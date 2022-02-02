@@ -18,15 +18,13 @@
       </header>
 
       <main class="content">
-
         <section class="profile">
           <img src="./images/avatar.jpg" alt="" class="profile__avatar" />
           <div class="profile__wrap">
             <div class="profile__name-wrapper">
-            <p class="profile__name">Жак-Ив Кусто</p>
-            <a href="" class="profile__edit"
-              ></a>
-          </div>
+              <p class="profile__name">Жак-Ив Кусто</p>
+              <a href="" class="profile__edit"></a>
+            </div>
             <p class="profile__description">Исследователь океана</p>
           </div>
           <button class="profile__add-button"></button>
@@ -34,49 +32,66 @@
 
         <section class="elements">
           <article class="element">
-            <img src="./images/karachaevsk.jpg"
-            alt="Город Карачаевск" class="element__image" />
+            <img
+              src="./images/karachaevsk.jpg"
+              alt="Город Карачаевск"
+              class="element__image"
+            />
             <div class="element__group">
               <p class="element__title">Карачаевск</p>
               <div class="element__like"></div>
             </div>
           </article>
           <article class="element">
-            <img src="./images/elbrus.jpg"
-            alt="Гора Эльбрус" class="element__image" />
-            <div class="element__group">
-              <p class="element__title">Гора Эльбрус</p>
-              <div class="element__like"></div>
-
-            </div>
-          </article>
-          <article class="element">
-            <img src="./images/dombai.jpg"
-            alt="Домбай" class="element__image" />
-            <div class="element__group">
-              <p class="element__title">Домбай</p>
-              <div class="element__like"></div>
-            </div>
-          </article>
-          <article class="element">
-            <img src="./images/elbrus-2.jpg"
-            alt="Гора Эльбрус" class="element__image" />
+            <img
+              src="./images/elbrus.jpg"
+              alt="Гора Эльбрус"
+              class="element__image"
+            />
             <div class="element__group">
               <p class="element__title">Гора Эльбрус</p>
               <div class="element__like"></div>
             </div>
           </article>
           <article class="element">
-            <img src="./images/dombai-2.jpg"
-            alt="Домбай" class="element__image" />
+            <img
+              src="./images/dombai.jpg"
+              alt="Домбай"
+              class="element__image"
+            />
             <div class="element__group">
               <p class="element__title">Домбай</p>
               <div class="element__like"></div>
             </div>
           </article>
           <article class="element">
-            <img src="./images/karach-cherk.jpg"
-            alt="Карачаево-Черкессия" class="element__image" />
+            <img
+              src="./images/elbrus-2.jpg"
+              alt="Гора Эльбрус"
+              class="element__image"
+            />
+            <div class="element__group">
+              <p class="element__title">Гора Эльбрус</p>
+              <div class="element__like"></div>
+            </div>
+          </article>
+          <article class="element">
+            <img
+              src="./images/dombai-2.jpg"
+              alt="Домбай"
+              class="element__image"
+            />
+            <div class="element__group">
+              <p class="element__title">Домбай</p>
+              <div class="element__like"></div>
+            </div>
+          </article>
+          <article class="element">
+            <img
+              src="./images/karach-cherk.jpg"
+              alt="Карачаево-Черкессия"
+              class="element__image"
+            />
             <div class="element__group">
               <p class="element__title">Карачаево-Черкессия</p>
               <div class="element__like"></div>
@@ -90,26 +105,28 @@
       </footer>
     </div>
 
+    <section class="popup">
+      <div class="popup__container">
+        <img src="./images/Close Icon.png" alt="" class="popup__close-button" />
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form action="" class="popup__form">
+          <ul class="popup__inputs">
+            <li class="popup__input">
+              <input type="text" class="popup__part_name" placeholder="Имя" />
+            </li>
+            <li class="popup__input">
+              <input
+                type="text"
+                class="popup__part_description"
+                placeholder="О себе"
+              />
+            </li>
+          </ul>
+        </form>
+        <button type="submit" class="popup__save">Сохранить</button>
+      </div>
+    </section>
 
-<section class="edit-form">
-  <img src="./images/Close Icon.png" alt="" class="edit-form__close-button">
-  <h2 class="edit-form__title">Редактировать профиль</h2>
-  <form action="" class="edit-form__form">
-    <ul class="edit-form__inputs">
-
-      <li class="edit-form__input">
-        <input type="text" class="edit-form__part_name" placeholder="Имя">
-      </li>
-      <li class="edit-form__input">
-        <input type="text" class="edit-form__part_description" placeholder="О себе">
-      </li>
-
-    </ul>
-
-  </form>
-  <button type = "submit" class="edit-form__save">Сохранить</button>
-</section>
-
-<script src="./scripts/script.js"></script>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
