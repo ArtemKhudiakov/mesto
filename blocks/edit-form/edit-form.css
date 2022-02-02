@@ -12,3 +12,22 @@
   transform: translate(-50%, -50%);
   visibility: hidden;
 }
+
+.edit-form::before {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: .5;
+}
+
+
+
+@media screen and (max-width: 620px) {
+  .edit-form {
+    height: 322px;
+    width: 282px;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -6,8 +6,13 @@
   background-position: center;
   background-repeat: no-repeat;
   margin-left: 18px;
-
 }
+
+.profile__edit:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
 
 @media screen and (max-width: 620px) {
   .profile__edit {

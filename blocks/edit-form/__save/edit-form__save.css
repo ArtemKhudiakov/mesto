@@ -9,5 +9,17 @@
   text-align: center;
   margin: 48px 36px 37px;
   border: none;
+}
 
+.edit-form__save:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+  .edit-form__save {
+    width: 238px;
+    height: 46px;
+    margin: 45px 22px 25px;
+  }
 }
