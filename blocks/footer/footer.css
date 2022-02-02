@@ -4,3 +4,23 @@
   width: calc(100% - 2*200px) ;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 1051px) {
+  .footer {
+    width: calc(100% - 2*100px);
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .footer {
+    width: calc(100% - 2*19px);
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .footer {
+    width: 100%;
+
+
+  }
+}

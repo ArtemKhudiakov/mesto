@@ -8,3 +8,11 @@
   margin-left: 18px;
 
 }
+
+@media screen and (max-width: 620px) {
+  .profile__edit {
+    width: 17px;
+    height: 17px;
+    margin-left: 10px;
+  }
+}
