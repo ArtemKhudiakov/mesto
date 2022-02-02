@@ -15,7 +15,7 @@
   border-radius: 2px;
 }
 
-@media screen and (max-width: 1051px) {
+@media screen and (max-width: 860px) {
   .profile__add-button {
     right: none;
     bottom: -25px;
