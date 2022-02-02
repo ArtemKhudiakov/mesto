@@ -3,11 +3,11 @@
   max-height: 120px;
   min-height: 74px;
   color: white;
-  border: 1px solid red;
   width: calc(100% - 2*200px) ;
   margin: 0 auto;
   display: flex;
   justify-content: flex-start;
   position: relative;
+  padding-top: 40px;
 
 }

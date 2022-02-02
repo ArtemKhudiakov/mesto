@@ -1,0 +1,8 @@
+.edit-form__part_description {
+  margin: 0;
+  padding: 0;
+  min-width: 358px;
+  min-height: 27px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}

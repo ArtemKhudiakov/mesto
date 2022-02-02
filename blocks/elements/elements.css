@@ -3,4 +3,10 @@
   color: white;
   width: calc(100% - 2*200px) ;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 20px;
+  column-gap: 17px;
+  padding-top: 51px;
 }
+

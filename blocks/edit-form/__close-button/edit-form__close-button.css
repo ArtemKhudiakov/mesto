@@ -1,0 +1,9 @@
+.edit-form__close-button {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  background-color: red;
+  z-index: 3;
+  right: -40px;
+  top: -40px;
+}
