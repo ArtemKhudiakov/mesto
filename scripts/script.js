@@ -1,9 +1,10 @@
-let popup = document.querySelector('.popup');
-let editButton = document.querySelector('.profile__edit')
-let closeButton = document.querySelector('.popup__close-button')
+const popup = document.querySelector('.popup');
+const editButton = document.querySelector('.profile__edit')
+const closeButton = document.querySelector('.popup__close-button')
 
 
-function openEdit () {
+function openEdit() {
+  // evt.preventDefault();
   popup.classList.add('popup__opened');
 }
 
@@ -11,9 +12,8 @@ function openEdit () {
 
 
 
-function closeEdit () {
+function closeEdit() {
   popup.classList.remove('popup__opened');
-  console.log('2 ' + popup.classList)
 }
 
 
@@ -22,7 +22,7 @@ editButton.addEventListener('click', openEdit);
 closeButton.addEventListener('click', closeEdit);
 
 
-console.log(closeButton.classList);
+// console.log(closeButton.classList);
 
 
 
