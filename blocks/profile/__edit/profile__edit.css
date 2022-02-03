@@ -2,6 +2,7 @@
   border: 1px solid white;
   width: 23px;
   height: 23px;
+  background-color: inherit;
   background-image: url(../../../images/Vector-pen.svg);
   background-position: center;
   background-repeat: no-repeat;

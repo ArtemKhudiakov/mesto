@@ -8,24 +8,11 @@ function openEdit() {
   popup.classList.add('popup__opened');
 }
 
-
-
-
-
 function closeEdit() {
   popup.classList.remove('popup__opened');
 }
 
 
 editButton.addEventListener('click', openEdit);
-
 closeButton.addEventListener('click', closeEdit);
-
-
-// console.log(closeButton.classList);
-
-
-
-
-// console.log(popup.classList);
 
