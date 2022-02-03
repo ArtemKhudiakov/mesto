@@ -3,8 +3,8 @@ let editButton = document.querySelector('.profile__edit');
 let closeButton = document.querySelector('.popup__close-button');
 let profileName = document.querySelector('.profile__name');
 let profileInfo = document.querySelector('.profile__description');
-let popupEditName = document.querySelector('.popup__part_name');
-let popupEditDescription = document.querySelector('.popup__part_description');
+let popupEditName = document.querySelector('.popup__name');
+let popupEditDescription = document.querySelector('.popup__description');
 let formElement = document.querySelector('.popup__form');
 
 function openEdit() {

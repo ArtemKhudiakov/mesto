@@ -1,6 +1,6 @@
-.popup__part_description {
-  margin: 0;
+.popup__name {
   padding: 0;
+  margin-bottom: 30px;
   min-width: 358px;
   min-height: 27px;
   border: none;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 620px) {
-  .popup__part_description {
+  .popup__name {
     min-width: 238px;
   }
 }
