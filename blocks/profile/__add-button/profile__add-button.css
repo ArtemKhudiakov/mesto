@@ -8,9 +8,9 @@
   background-color: inherit;
   align-self: center;
   padding: 0;
+  margin-left: auto;
+  margin-right: 0;
 
-  position: absolute;
-  right: 0;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
 }
@@ -23,17 +23,17 @@
 @media screen and (max-width: 860px) {
   .profile__add-button {
     right: none;
-    bottom: -25px;
     width: none;
     min-width: 100%;
+    margin-top: 36px;
+    margin-right: auto;
   }
 }
 
 @media screen and (max-width: 620px) {
   .profile__add-button {
     position: static;
-    right: none;
     min-width: 282px;
-    margin-top: 36px;
+
   }
 }

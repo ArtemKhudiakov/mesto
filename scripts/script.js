@@ -8,11 +8,12 @@ let popupEditDescription = document.querySelector('.popup__description');
 let formElement = document.querySelector('.popup__form');
 
 function openEdit() {
-  popup.classList.add('popup__opened');
+  popup.classList.add('popup_opened');
+  popupEditName.value = profileName.textContent;
 }
 
 function closeEdit() {
-  popup.classList.remove('popup__opened');
+  popup.classList.remove('popup_opened');
 }
 
 // Открытие попапа
@@ -20,7 +21,6 @@ editButton.addEventListener('click', openEdit);
 closeButton.addEventListener('click', closeEdit);
 
 // Загрузка текущих данных в попап
-popupEditName.value = profileName.textContent;
 popupEditDescription.value = profileInfo.textContent;
 
 

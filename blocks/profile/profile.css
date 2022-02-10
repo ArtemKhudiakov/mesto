@@ -6,9 +6,10 @@
   margin: 0 auto;
   display: flex;
   justify-content: flex-start;
-  position: relative;
   padding-top: 40px;
-
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1051px) {
@@ -19,7 +20,9 @@
 
 @media screen and (max-width: 860px) {
   .profile {
-    padding-bottom: 50px;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 42px;
   }
 }
 
@@ -31,9 +34,7 @@
 
 @media screen and (max-width: 620px) {
   .profile {
-    flex-direction: column;
-    align-items: center;
-    padding-top: 42px;
+
     padding-bottom: 0;
   }
 }

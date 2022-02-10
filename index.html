@@ -19,15 +19,15 @@
 
       <main class="content">
         <section class="profile">
-          <img src="./images/avatar.jpg" alt="" class="profile__avatar" />
+          <img src="./images/avatar.jpg" alt="Аватар профайла" class="profile__avatar" />
           <div class="profile__wrap">
             <div class="profile__name-wrapper">
-              <p class="profile__name">Жак-Ив Кусто</p>
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
               <button type="button" class="profile__edit"></button >
             </div>
             <p class="profile__description">Исследователь океана</p>
           </div>
-          <button class="profile__add-button"></button>
+          <button type="button" class="profile__add-button"></button>
         </section>
 
         <section class="elements">
@@ -38,8 +38,8 @@
               class="element__image"
             />
             <div class="element__group">
-              <p class="element__title">Карачаевск</p>
-              <div class="element__like"></div>
+              <h2 class="element__title">Карачаевск</h2>
+              <button type="button" class="element__like"></button>
             </div>
           </article>
           <article class="element">
@@ -49,8 +49,8 @@
               class="element__image"
             />
             <div class="element__group">
-              <p class="element__title">Гора Эльбрус</p>
-              <div class="element__like"></div>
+              <h2 class="element__title">Гора Эльбрус</h2>
+              <button type="button" class="element__like"></button>
             </div>
           </article>
           <article class="element">
@@ -60,8 +60,8 @@
               class="element__image"
             />
             <div class="element__group">
-              <p class="element__title">Домбай</p>
-              <div class="element__like"></div>
+              <h2 class="element__title">Домбай</h2>
+              <button type="button" class="element__like"></button>
             </div>
           </article>
           <article class="element">
@@ -71,8 +71,8 @@
               class="element__image"
             />
             <div class="element__group">
-              <p class="element__title">Гора Эльбрус</p>
-              <div class="element__like"></div>
+              <h2 class="element__title">Гора Эльбрус</h2>
+              <button type="button" class="element__like"></button>
             </div>
           </article>
           <article class="element">
@@ -82,8 +82,8 @@
               class="element__image"
             />
             <div class="element__group">
-              <p class="element__title">Домбай</p>
-              <div class="element__like"></div>
+              <h2 class="element__title">Домбай</h2>
+              <button type="button" class="element__like"></button>
             </div>
           </article>
           <article class="element">
@@ -93,8 +93,8 @@
               class="element__image"
             />
             <div class="element__group">
-              <p class="element__title">Карачаево-Черкессия</p>
-              <div class="element__like"></div>
+              <h2 class="element__title">Карачаево-Черкессия</h2>
+              <button type="button" class="element__like"></button>
             </div>
           </article>
         </section>
@@ -105,11 +105,11 @@
       </footer>
     </div>
 
-    <section class="popup">
+    <div class="popup">
       <div class="popup__container">
-        <img src="./images/Close_Icon.png" alt="Кнопка выхода из попап" class="popup__close-button"/>
+        <button type="button" alt="Кнопка выхода из попап" class="popup__close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form action="mailto:artemka86ber@gmail.com" class="popup__form">
+        <form name="editPopup" action="mailto:artemka86ber@gmail.com" class="popup__form">
           <ul class="popup__inputs">
             <li class="popup__input">
               <input type="text" class="popup__name" placeholder="Имя" />
@@ -126,7 +126,7 @@
         </form>
 
       </div>
-    </section>
+    </div>
 
     <script src="./scripts/script.js"></script>
   </body>

@@ -9,6 +9,7 @@
   text-align: center;
   margin: 48px 36px 37px;
   border: none;
+  border-radius: 2px;
 }
 
 .popup__save:hover {
@@ -21,5 +22,7 @@
     width: 238px;
     height: 46px;
     margin: 45px 22px 25px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
