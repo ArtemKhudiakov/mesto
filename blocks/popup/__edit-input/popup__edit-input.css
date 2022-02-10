@@ -1,4 +1,4 @@
-.popup__description {
+.popup__edit-input {
   margin: 0;
   padding: 0;
   min-width: 358px;
@@ -11,10 +11,11 @@
   font-size: 14px;
   line-height: 17px;
   color: #000000;
+  margin-bottom: 30px;
 }
 
 @media screen and (max-width: 620px) {
-  .popup__description {
+  .popup__edit-input {
     min-width: 238px;
   }
 }
