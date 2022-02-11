@@ -9,7 +9,10 @@ let formElement = document.querySelector('.popup__form');
 
 function openEdit() {
   popup.classList.add('popup_opened');
+
+  // Загрузка текущих данных в попап
   popupEditName.value = profileName.textContent;
+  popupEditDescription.value = profileInfo.textContent;
 }
 
 function closeEdit() {
@@ -19,11 +22,6 @@ function closeEdit() {
 // Открытие попапа
 editButton.addEventListener('click', openEdit);
 closeButton.addEventListener('click', closeEdit);
-
-// Загрузка текущих данных в попап
-popupEditDescription.value = profileInfo.textContent;
-
-
 
 // Функция изменения именя и информации о себе
 function formSubmitHandler (evt) {
