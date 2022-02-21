@@ -67,7 +67,7 @@ const initialCards = [
     alternative: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-]; 
+];
 
 const cardTemplate = document.querySelector('#card-template').content;
 const elements = document.querySelector('.elements');
@@ -87,5 +87,6 @@ let addPlace = document.querySelector('.profile__add-button');
 
 // Открытие и закрытие попапа Добавить место
 addPlace.addEventListener('click', openEdit);
+
 closeButton.addEventListener('click', closeEdit);
 
