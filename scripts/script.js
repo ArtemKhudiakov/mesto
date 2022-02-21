@@ -35,3 +35,49 @@ function formSubmitHandler (evt) {
 
 // Следим за кнопкой отправить
 formElement.addEventListener('submit', formSubmitHandler);
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    alternative: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    alternative: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    alternative: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    alternative: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    alternative: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    alternative: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]; 
+
+// template и получение карточек
+const cardTemplate = document.querySelector('#card-template').content;
+const elements = document.querySelector('.elements');
+
+initialCards.forEach( function (item) {
+  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+  cardElement.querySelector('.element__image').src = item.link;
+  cardElement.querySelector('.element__image').alt = item.alternative;
+  cardElement.querySelector('.element__title').textContent = item.name;
+  elements.append(cardElement);
+});
+
