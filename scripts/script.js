@@ -9,21 +9,19 @@ let formElement = document.querySelector('.popup__form');
 
 function openEdit() {
   popup.classList.add('popup__opened');
+
+  // Загрузка текущих данных в попап
+  popupEditName.value = profileName.textContent;
+  popupEditDescription.value = profileInfo.textContent;
 }
 
 function closeEdit() {
   popup.classList.remove('popup__opened');
 }
 
-// Открытие попапа
+// Открытие и закрытие попапа Редактировать профиль
 editButton.addEventListener('click', openEdit);
 closeButton.addEventListener('click', closeEdit);
-
-// Загрузка текущих данных в попап
-popupEditName.value = profileName.textContent;
-popupEditDescription.value = profileInfo.textContent;
-
-
 
 // Функция изменения именя и информации о себе
 function formSubmitHandler (evt) {
@@ -36,6 +34,8 @@ function formSubmitHandler (evt) {
 // Следим за кнопкой отправить
 formElement.addEventListener('submit', formSubmitHandler);
 
+
+// Template и получение карточек
 const initialCards = [
   {
     name: 'Архыз',
@@ -69,7 +69,6 @@ const initialCards = [
   }
 ]; 
 
-// template и получение карточек
 const cardTemplate = document.querySelector('#card-template').content;
 const elements = document.querySelector('.elements');
 
@@ -81,3 +80,11 @@ initialCards.forEach( function (item) {
   elements.append(cardElement);
 });
 
+
+// Попап добавить место
+let addPlace = document.querySelector('.profile__add-button');
+
+
+// Открытие и закрытие попапа Добавить место
+addPlace.addEventListener('click', openEdit);
+closeButton.addEventListener('click', closeEdit);
