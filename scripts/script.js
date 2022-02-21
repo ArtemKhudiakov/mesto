@@ -1,10 +1,13 @@
-let editButton = document.querySelector('.profile__edit');
-let closeButton = document.querySelector('.popup__close-button');
-let profileName = document.querySelector('.profile__name');
-let profileInfo = document.querySelector('.profile__description');
-let popupEditName = document.querySelector('.popup__edit-input_type_name');
-let popupEditDescription = document.querySelector('.popup__edit-input_type_description');
-let formElement = document.querySelector('.popup__form');
+const editButton = document.querySelector('.profile__edit');
+const profileName = document.querySelector('.profile__name');
+const profileInfo = document.querySelector('.profile__description');
+const popupEditName = document.querySelector('.popup__edit-input_type_name');
+const popupEditDescription = document.querySelector('.popup__edit-input_type_description');
+const formElement = document.querySelector('.popup__form');
+const formElementPlace = document.querySelector('.place-popup__form');
+const popupNewPlace = document.querySelector('.popup__edit-input_type_place');
+const popupNewUrl = document.querySelector('.popup__edit-input_type_url');
+
 
 function openEditProfile() {
   const popup = document.querySelector('.edit-popup');
@@ -16,9 +19,6 @@ function openEditProfile() {
 // Слушатель Редактировать профиль
 editButton.addEventListener('click', openEditProfile);
 
-// Кнопка закрытия попапа
-closeButton.addEventListener('click', closePopup);
-
 // Функция изменения имени и информации о себе
 function formSubmitHandler (evt) {
     evt.preventDefault();
@@ -26,12 +26,28 @@ function formSubmitHandler (evt) {
     profileInfo.textContent = popupEditDescription.value;
     closePopup(evt);
 }
+// Функция нового места
+function formSubmitPlace (evt) {
+  evt.preventDefault();
+  const newCardObject = {
+    name: popupNewPlace.value,
+    link: popupNewUrl.value,
+    alt: popupNewPlace.value,
+  };
+  createCard(newCardObject);
+  closePopup(evt);
+}
+
 
 // Следим за кнопкой отправить
 formElement.addEventListener('submit', formSubmitHandler);
+formElementPlace.addEventListener('submit', formSubmitPlace);
+
 
 // Открытие и закрытие попапа
 function openPopup(popup) {
+  const closeButton = popup.querySelector('.popup__close-button');
+  closeButton.addEventListener('click', closePopup);
   popup.classList.add('popup_opened');
 }
 
@@ -82,10 +98,11 @@ function createCard (item) {
   const cardImage = cardElement.querySelector('.element__image');
   const cardTitle = cardElement.querySelector('.element__title');
   cardElement.querySelector('.element__like').addEventListener('click', doLike);
+  cardElement.querySelector('.element__trash').addEventListener('click', () => { cardElement.remove(); });
   cardImage.src = item.link;
   cardImage.alt = item.name;
   cardTitle.textContent = item.name;
-  elements.append(cardElement);
+  elements.prepend(cardElement);
 }
 
 // Создание перебором всех карточек
@@ -93,18 +110,13 @@ function createCards() {
   initialCards.forEach(function (element) {
   createCard(element)}
 );
+
 }
 
 createCards(initialCards);
 
-
-
-
-
-
 // // Попап добавить место
 let addPlace = document.querySelector('.profile__add-button');
-
 
 addPlace.addEventListener('click', createNewPlace);
 
@@ -112,7 +124,6 @@ function createNewPlace() {
   const popup = document.querySelector('.place-popup');
   console.log(popup);
   openPopup(popup);
-
 }
 
 //Сделать лайк
@@ -120,5 +131,3 @@ function doLike(event) {
   const elementLike = event.target;
   elementLike.classList.toggle('element__like_active');
 }
-
-

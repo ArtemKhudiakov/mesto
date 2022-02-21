@@ -74,13 +74,13 @@
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="edit-popup-Form" action="mailto:artemka86ber@gmail.com" class="popup__form">
+        <form name="edit-popup-Form" action="mailto:artemka86ber@gmail.com" class="popup__form place-popup__form">
           <ul class="popup__inputs">
             <li class="popup__input">
               <input
                 type="text"
                 name="user-name"
-                class="popup__edit-input popup__edit-input_type_name"
+                class="popup__edit-input popup__edit-input_type_place"
                 placeholder="Название"
               />
             </li>
@@ -88,7 +88,7 @@
               <input
                 type="text"
                 name="user-description"
-                class="popup__edit-input popup__edit-input_type_description"
+                class="popup__edit-input popup__edit-input_type_url"
                 placeholder="Ссылка на картинку"
               />
             </li>
@@ -101,11 +101,11 @@
     <template id="card-template">
 
     <article class="element">
-      <div class="element__trash"></div>
+      <button type="button" class="element__trash"></button>
       <img
         class="element__image"
       />
-      <button class="element__group">
+      <div class="element__group">
         <h2 class="element__title"></h2>
         <button type="button" class="element__like"></button>
       </div>
