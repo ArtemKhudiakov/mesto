@@ -1,4 +1,3 @@
-let popup = document.querySelector('.popup');
 let editButton = document.querySelector('.profile__edit');
 let closeButton = document.querySelector('.popup__close-button');
 let profileName = document.querySelector('.profile__name');
@@ -7,64 +6,69 @@ let popupEditName = document.querySelector('.popup__edit-input_type_name');
 let popupEditDescription = document.querySelector('.popup__edit-input_type_description');
 let formElement = document.querySelector('.popup__form');
 
-function openEdit() {
-  popup.classList.add('popup_opened');
-
-  // Загрузка текущих данных в попап
+function openEditProfile() {
+  const popup = document.querySelector('.edit-popup');
   popupEditName.value = profileName.textContent;
   popupEditDescription.value = profileInfo.textContent;
+  openPopup(popup)
 }
 
-function closeEdit() {
-  popup.classList.remove('popup_opened');
-}
+// Слушатель Редактировать профиль
+editButton.addEventListener('click', openEditProfile);
 
-// Открытие и закрытие попапа Редактировать профиль
-editButton.addEventListener('click', openEdit);
-closeButton.addEventListener('click', closeEdit);
+// Кнопка закрытия попапа
+closeButton.addEventListener('click', closePopup);
 
-// Функция изменения именя и информации о себе
+// Функция изменения имени и информации о себе
 function formSubmitHandler (evt) {
     evt.preventDefault();
     profileName.textContent = popupEditName.value;
     profileInfo.textContent = popupEditDescription.value;
-    closeEdit()
+    closePopup(evt);
 }
 
 // Следим за кнопкой отправить
 formElement.addEventListener('submit', formSubmitHandler);
 
+// Открытие и закрытие попапа
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
 
+function closePopup(event) {
+  event.preventDefault();
+  event.target.closest('.popup').classList.remove('popup_opened');
+  console.log(event.target)
+}
+
+
+//
+//
+//
 // Template и получение карточек
 const initialCards = [
   {
     name: 'Архыз',
-    alternative: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
     name: 'Челябинская область',
-    alternative: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
     name: 'Иваново',
-    alternative: 'Иваново',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
     name: 'Камчатка',
-    alternative: 'Камчатка',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
     name: 'Холмогорский район',
-    alternative: 'Холмогорский район',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
     name: 'Байкал',
-    alternative: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
@@ -72,21 +76,49 @@ const initialCards = [
 const cardTemplate = document.querySelector('#card-template').content;
 const elements = document.querySelector('.elements');
 
-initialCards.forEach( function (item) {
+// Создание карточки из шаблона
+function createCard (item) {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  cardElement.querySelector('.element__image').src = item.link;
-  cardElement.querySelector('.element__image').alt = item.alternative;
-  cardElement.querySelector('.element__title').textContent = item.name;
+  const cardImage = cardElement.querySelector('.element__image');
+  const cardTitle = cardElement.querySelector('.element__title');
+  cardElement.querySelector('.element__like').addEventListener('click', doLike);
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
+  cardTitle.textContent = item.name;
   elements.append(cardElement);
-});
+}
+
+// Создание перебором всех карточек
+function createCards() {
+  initialCards.forEach(function (element) {
+  createCard(element)}
+);
+}
+
+createCards(initialCards);
 
 
-// Попап добавить место
+
+
+
+
+// // Попап добавить место
 let addPlace = document.querySelector('.profile__add-button');
 
 
-// Открытие и закрытие попапа Добавить место
-addPlace.addEventListener('click', openEdit);
+addPlace.addEventListener('click', createNewPlace);
 
-closeButton.addEventListener('click', closeEdit);
+function createNewPlace() {
+  const popup = document.querySelector('.place-popup');
+  console.log(popup);
+  openPopup(popup);
+
+}
+
+//Сделать лайк
+function doLike(event) {
+  const elementLike = event.target;
+  elementLike.classList.toggle('element__like_active');
+}
+
 

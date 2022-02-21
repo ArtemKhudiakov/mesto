@@ -31,72 +31,7 @@
         </section>
 
         <section class="elements">
-          <!-- <article class="element">
-            <img
-              src="./images/karachaevsk.jpg"
-              alt="Город Карачаевск"
-              class="element__image"
-            />
-            <div class="element__group">
-              <h2 class="element__title">Карачаевск</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img
-              src="./images/elbrus.jpg"
-              alt="Гора Эльбрус"
-              class="element__image"
-            />
-            <div class="element__group">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img
-              src="./images/dombai.jpg"
-              alt="Домбай"
-              class="element__image"
-            />
-            <div class="element__group">
-              <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img
-              src="./images/elbrus-2.jpg"
-              alt="Гора Эльбрус"
-              class="element__image"
-            />
-            <div class="element__group">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img
-              src="./images/dombai-2.jpg"
-              alt="Домбай"
-              class="element__image"
-            />
-            <div class="element__group">
-              <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article>
-          <article class="element">
-            <img
-              src="./images/karach-cherk.jpg"
-              alt="Карачаево-Черкессия"
-              class="element__image"
-            />
-            <div class="element__group">
-              <h2 class="element__title">Карачаево-Черкессия</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </article> -->
+
         </section>
       </main>
 
@@ -104,8 +39,8 @@
         <p class="footer__copyright">&copy; 2022 Артем Худяков</p>
       </footer>
     </div>
-
-    <div class="popup">
+<!-- Попап открытия редактирования профиля -->
+    <div class="popup edit-popup">
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -131,19 +66,48 @@
           <button type="submit" class="popup__save">Сохранить</button>
         </form>
       </div>
-
     </div>
 
+<!-- Попап создания нового места -->
+
+    <div class="popup place-popup">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form name="edit-popup-Form" action="mailto:artemka86ber@gmail.com" class="popup__form">
+          <ul class="popup__inputs">
+            <li class="popup__input">
+              <input
+                type="text"
+                name="user-name"
+                class="popup__edit-input popup__edit-input_type_name"
+                placeholder="Название"
+              />
+            </li>
+            <li class="popup__input">
+              <input
+                type="text"
+                name="user-description"
+                class="popup__edit-input popup__edit-input_type_description"
+                placeholder="Ссылка на картинку"
+              />
+            </li>
+          </ul>
+          <button type="submit" class="popup__save">Сохранить</button>
+        </form>
+      </div>
+    </div>
 
     <template id="card-template">
-  
+
     <article class="element">
+      <div class="element__trash"></div>
       <img
         class="element__image"
       />
-      <div class="element__group">
-        <p class="element__title"></p>
-        <div class="element__like"></div>
+      <button class="element__group">
+        <h2 class="element__title"></h2>
+        <button type="button" class="element__like"></button>
       </div>
     </article>
 
