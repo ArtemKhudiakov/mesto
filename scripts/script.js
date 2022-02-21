@@ -9,21 +9,19 @@ let formElement = document.querySelector('.popup__form');
 
 function openEdit() {
   popup.classList.add('popup_opened');
+
+  // Загрузка текущих данных в попап
   popupEditName.value = profileName.textContent;
+  popupEditDescription.value = profileInfo.textContent;
 }
 
 function closeEdit() {
   popup.classList.remove('popup_opened');
 }
 
-// Открытие попапа
+// Открытие и закрытие попапа Редактировать профиль
 editButton.addEventListener('click', openEdit);
 closeButton.addEventListener('click', closeEdit);
-
-// Загрузка текущих данных в попап
-popupEditDescription.value = profileInfo.textContent;
-
-
 
 // Функция изменения именя и информации о себе
 function formSubmitHandler (evt) {
@@ -35,3 +33,59 @@ function formSubmitHandler (evt) {
 
 // Следим за кнопкой отправить
 formElement.addEventListener('submit', formSubmitHandler);
+
+
+// Template и получение карточек
+const initialCards = [
+  {
+    name: 'Архыз',
+    alternative: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    alternative: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    alternative: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    alternative: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    alternative: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    alternative: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]; 
+
+const cardTemplate = document.querySelector('#card-template').content;
+const elements = document.querySelector('.elements');
+
+initialCards.forEach( function (item) {
+  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+  cardElement.querySelector('.element__image').src = item.link;
+  cardElement.querySelector('.element__image').alt = item.alternative;
+  cardElement.querySelector('.element__title').textContent = item.name;
+  elements.append(cardElement);
+});
+
+
+// Попап добавить место
+let addPlace = document.querySelector('.profile__add-button');
+
+
+// Открытие и закрытие попапа Добавить место
+addPlace.addEventListener('click', openEdit);
+closeButton.addEventListener('click', closeEdit);
+
