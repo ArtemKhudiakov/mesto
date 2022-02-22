@@ -99,10 +99,25 @@ function createCard (item) {
   const cardTitle = cardElement.querySelector('.element__title');
   cardElement.querySelector('.element__like').addEventListener('click', doLike);
   cardElement.querySelector('.element__trash').addEventListener('click', () => { cardElement.remove(); });
+
   cardImage.src = item.link;
   cardImage.alt = item.name;
   cardTitle.textContent = item.name;
   elements.prepend(cardElement);
+
+  cardImage.addEventListener('click', function () {
+  const bigImage = document.querySelector('.popup-image');
+  const bigImageTitle = document.querySelector('.popup-image__title');
+  const bigImageUrl = document.querySelector('.popup-image__url');
+  bigImage.classList.toggle('popup_opened');
+  bigImageTitle.textContent = item.name;
+  bigImageUrl.src = item.link;
+  // event.target.closest('.popup').classList.remove('popup_opened');
+  // closePopup(event)
+  // // document.querySelector('.popup-image__close-button').addEventListener('click', closePopup(bigImage));
+  //   console.log(event.target.parentElement);
+  });
+
 }
 
 // Создание перебором всех карточек
@@ -120,6 +135,7 @@ let addPlace = document.querySelector('.profile__add-button');
 
 addPlace.addEventListener('click', createNewPlace);
 
+
 function createNewPlace() {
   const popup = document.querySelector('.place-popup');
   console.log(popup);
@@ -131,3 +147,4 @@ function doLike(event) {
   const elementLike = event.target;
   elementLike.classList.toggle('element__like_active');
 }
+
