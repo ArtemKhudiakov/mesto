@@ -19,32 +19,38 @@
 
       <main class="content">
         <section class="profile">
-          <img src="./images/avatar.jpg" alt="Аватар профайла" class="profile__avatar" />
+          <img
+            src="./images/avatar.jpg"
+            alt="Аватар профайла"
+            class="profile__avatar"
+          />
           <div class="profile__wrap">
             <div class="profile__name-wrapper">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" class="profile__edit"></button >
+              <button type="button" class="profile__edit"></button>
             </div>
             <p class="profile__description">Исследователь океана</p>
           </div>
           <button type="button" class="profile__add-button"></button>
         </section>
 
-        <section class="elements">
-
-        </section>
+        <section class="elements"></section>
       </main>
 
       <footer class="footer">
         <p class="footer__copyright">&copy; 2022 Артем Худяков</p>
       </footer>
     </div>
-<!-- Попап открытия редактирования профиля -->
+    <!-- Попап открытия редактирования профиля -->
     <div class="popup edit-popup">
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="edit-popup-Form" action="mailto:artemka86ber@gmail.com" class="popup__form">
+        <form
+          name="edit-popup-Form"
+          action="mailto:artemka86ber@gmail.com"
+          class="popup__form"
+        >
           <ul class="popup__inputs">
             <li class="popup__input">
               <input
@@ -68,13 +74,17 @@
       </div>
     </div>
 
-<!-- Попап создания нового места -->
+    <!-- Попап создания нового места -->
 
     <div class="popup place-popup">
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="edit-popup-Form" action="mailto:artemka86ber@gmail.com" class="popup__form place-popup__form">
+        <form
+          name="edit-popup-Form"
+          action="mailto:artemka86ber@gmail.com"
+          class="popup__form place-popup__form"
+        >
           <ul class="popup__inputs">
             <li class="popup__input">
               <input
@@ -97,30 +107,32 @@
         </form>
       </div>
     </div>
-<!-- Попап фото -->
+    <!-- Попап фото -->
     <div class="popup popup-image">
       <div class="popup-image__container">
-        <button type="button" class="popup__close-button popup-image__close-button"></button>
-        <img class = "popup-image__url" src="https://img.geliophoto.com/ufa/00_ufa.jpg" alt="">
+        <button
+          type="button"
+          class="popup__close-button popup-image__close-button"
+        ></button>
+        <img
+          class="popup-image__url"
+          src="https://img.geliophoto.com/ufa/00_ufa.jpg"
+          alt=""
+        />
         <h2 class="popup__title popup-image__title"></h2>
       </div>
     </div>
 
     <template id="card-template">
-
-    <article class="element">
-      <button type="button" class="element__trash"></button>
-      <img
-        class="element__image"
-      />
-      <div class="element__group">
-        <h2 class="element__title"></h2>
-        <button type="button" class="element__like"></button>
-      </div>
-    </article>
-
+      <article class="element">
+        <button type="button" class="element__trash"></button>
+        <img class="element__image" />
+        <div class="element__group">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
     </template>
-
 
     <script src="./scripts/script.js"></script>
   </body>

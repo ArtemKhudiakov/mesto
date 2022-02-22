@@ -8,61 +8,8 @@ const formElementPlace = document.querySelector('.place-popup__form');
 const popupNewPlace = document.querySelector('.popup__edit-input_type_place');
 const popupNewUrl = document.querySelector('.popup__edit-input_type_url');
 
+const addPlace = document.querySelector('.profile__add-button');
 
-function openEditProfile() {
-  const popup = document.querySelector('.edit-popup');
-  popupEditName.value = profileName.textContent;
-  popupEditDescription.value = profileInfo.textContent;
-  openPopup(popup)
-}
-
-// Слушатель Редактировать профиль
-editButton.addEventListener('click', openEditProfile);
-
-// Функция изменения имени и информации о себе
-function formSubmitHandler (evt) {
-    evt.preventDefault();
-    profileName.textContent = popupEditName.value;
-    profileInfo.textContent = popupEditDescription.value;
-    closePopup(evt);
-}
-// Функция нового места
-function formSubmitPlace (evt) {
-  evt.preventDefault();
-  const newCardObject = {
-    name: popupNewPlace.value,
-    link: popupNewUrl.value,
-    alt: popupNewPlace.value,
-  };
-  createCard(newCardObject);
-  closePopup(evt);
-}
-
-
-// Следим за кнопкой отправить
-formElement.addEventListener('submit', formSubmitHandler);
-formElementPlace.addEventListener('submit', formSubmitPlace);
-
-
-
-
-// Открытие и закрытие попапа
-function openPopup(popup) {
-  const closeButton = popup.querySelector('.popup__close-button');
-  closeButton.addEventListener('click', closePopup);
-  popup.classList.add('popup_opened');
-}
-
-function closePopup(event) {
-  console.log('111'+ event.target)
-  event.target.closest('.popup').classList.remove('popup_opened');
-}
-
-
-//
-//
-//
-// Template и получение карточек
 const initialCards = [
   {
     name: 'Архыз',
@@ -93,6 +40,51 @@ const initialCards = [
 const cardTemplate = document.querySelector('#card-template').content;
 const elements = document.querySelector('.elements');
 
+// Функция открыть редактирование профиля
+function openEditProfile() {
+  const popup = document.querySelector('.edit-popup');
+  popupEditName.value = profileName.textContent;
+  popupEditDescription.value = profileInfo.textContent;
+  openPopup(popup)
+}
+
+
+// Функция изменения имени и информации о себе
+function formSubmitHandler (evt) {
+    evt.preventDefault();
+    profileName.textContent = popupEditName.value;
+    profileInfo.textContent = popupEditDescription.value;
+    closePopup(evt);
+}
+
+// Функция нового места
+function formSubmitPlace (evt) {
+  evt.preventDefault();
+  const newCardObject = {
+    name: popupNewPlace.value,
+    link: popupNewUrl.value,
+    alt: popupNewPlace.value,
+  };
+  createCard(newCardObject);
+  closePopup(evt);
+}
+
+// Следим за кнопкой отправить
+formElement.addEventListener('submit', formSubmitHandler);
+formElementPlace.addEventListener('submit', formSubmitPlace);
+
+// Открытие и закрытие попапа
+function openPopup(popup) {
+  const closeButton = popup.querySelector('.popup__close-button');
+  closeButton.addEventListener('click', closePopup);
+  popup.classList.add('popup_opened');
+}
+
+function closePopup(event) {
+  console.log('111'+ event.target)
+  event.target.closest('.popup').classList.remove('popup_opened');
+}
+
 // Создание карточки из шаблона
 function createCard (item) {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
@@ -117,7 +109,6 @@ function createCard (item) {
 
   bigImageDelete.addEventListener('click', () => bigImage.classList.remove('popup_opened'));
   });
-
 }
 
 // Создание перебором всех карточек
@@ -125,26 +116,23 @@ function createCards() {
   initialCards.forEach(function (element) {
   createCard(element)}
 );
-
 }
 
-createCards(initialCards);
-
-// // Попап добавить место
-let addPlace = document.querySelector('.profile__add-button');
-
-addPlace.addEventListener('click', createNewPlace);
-
-
+// Создать новое место
 function createNewPlace() {
   const popup = document.querySelector('.place-popup');
   console.log(popup);
   openPopup(popup);
 }
 
-//Сделать лайк
+// Сделать лайк
 function doLike(event) {
   const elementLike = event.target;
   elementLike.classList.toggle('element__like_active');
 }
 
+// Слушатели
+editButton.addEventListener('click', openEditProfile);
+addPlace.addEventListener('click', createNewPlace);
+
+createCards(initialCards);
