@@ -44,6 +44,8 @@ formElement.addEventListener('submit', formSubmitHandler);
 formElementPlace.addEventListener('submit', formSubmitPlace);
 
 
+
+
 // Открытие и закрытие попапа
 function openPopup(popup) {
   const closeButton = popup.querySelector('.popup__close-button');
@@ -52,9 +54,8 @@ function openPopup(popup) {
 }
 
 function closePopup(event) {
-  event.preventDefault();
+  console.log('111'+ event.target)
   event.target.closest('.popup').classList.remove('popup_opened');
-  console.log(event.target)
 }
 
 
@@ -109,13 +110,12 @@ function createCard (item) {
   const bigImage = document.querySelector('.popup-image');
   const bigImageTitle = document.querySelector('.popup-image__title');
   const bigImageUrl = document.querySelector('.popup-image__url');
-  bigImage.classList.toggle('popup_opened');
+  const bigImageDelete = document.querySelector('.popup-image__close-button');
+  bigImage.classList.add('popup_opened');
   bigImageTitle.textContent = item.name;
   bigImageUrl.src = item.link;
-  // event.target.closest('.popup').classList.remove('popup_opened');
-  // closePopup(event)
-  // // document.querySelector('.popup-image__close-button').addEventListener('click', closePopup(bigImage));
-  //   console.log(event.target.parentElement);
+
+  bigImageDelete.addEventListener('click', () => bigImage.classList.remove('popup_opened'));
   });
 
 }
