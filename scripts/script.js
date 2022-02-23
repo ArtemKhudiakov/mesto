@@ -3,54 +3,32 @@ const profileName = document.querySelector('.profile__name');
 const profileInfo = document.querySelector('.profile__description');
 const popupEditName = document.querySelector('.popup__edit-input_type_name');
 const popupEditDescription = document.querySelector('.popup__edit-input_type_description');
-const formElement = document.querySelector('.popup__form');
+const formElementEdit = document.querySelector('.edit-popup__form');
 const formElementPlace = document.querySelector('.place-popup__form');
 const popupNewPlace = document.querySelector('.popup__edit-input_type_place');
 const popupNewUrl = document.querySelector('.popup__edit-input_type_url');
 
 const addPlace = document.querySelector('.profile__add-button');
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+const popupEdit = document.querySelector('.edit-popup');
+const popupPlace = document.querySelector('.place-popup');
+const popupImage = document.querySelector('.popup-image');
+
 
 const cardTemplate = document.querySelector('#card-template').content;
 const elements = document.querySelector('.elements');
 
+
 // Функция открыть редактирование профиля
 function openEditProfile() {
-  const popup = document.querySelector('.edit-popup');
   popupEditName.value = profileName.textContent;
   popupEditDescription.value = profileInfo.textContent;
-  openPopup(popup)
+  openPopup(popupEdit)
 }
 
 
 // Функция изменения имени и информации о себе
-function formSubmitHandler (evt) {
+function submitEditForm (evt) {
     evt.preventDefault();
     profileName.textContent = popupEditName.value;
     profileInfo.textContent = popupEditDescription.value;
@@ -58,7 +36,7 @@ function formSubmitHandler (evt) {
 }
 
 // Функция нового места
-function formSubmitPlace (evt) {
+function submitNewPlaceForm (evt) {
   evt.preventDefault();
   const newCardObject = {
     name: popupNewPlace.value,
@@ -70,8 +48,8 @@ function formSubmitPlace (evt) {
 }
 
 // Следим за кнопкой отправить
-formElement.addEventListener('submit', formSubmitHandler);
-formElementPlace.addEventListener('submit', formSubmitPlace);
+formElementEdit.addEventListener('submit', submitEditForm);
+formElementPlace.addEventListener('submit', submitNewPlaceForm);
 
 // Открытие и закрытие попапа
 function openPopup(popup) {
@@ -99,15 +77,15 @@ function createCard (item) {
   elements.prepend(cardElement);
 
   cardImage.addEventListener('click', function () {
-  const bigImage = document.querySelector('.popup-image');
+
   const bigImageTitle = document.querySelector('.popup-image__title');
   const bigImageUrl = document.querySelector('.popup-image__url');
   const bigImageDelete = document.querySelector('.popup-image__close-button');
-  bigImage.classList.add('popup_opened');
+  popupImage.classList.add('popup_opened');
   bigImageTitle.textContent = item.name;
   bigImageUrl.src = item.link;
 
-  bigImageDelete.addEventListener('click', () => bigImage.classList.remove('popup_opened'));
+  bigImageDelete.addEventListener('click', () => popupImage.classList.remove('popup_opened'));
   });
 }
 
@@ -120,9 +98,9 @@ function createCards() {
 
 // Создать новое место
 function createNewPlace() {
-  const popup = document.querySelector('.place-popup');
-  console.log(popup);
-  openPopup(popup);
+
+  console.log(popupPlace);
+  openPopup(popupPlace);
 }
 
 // Сделать лайк
