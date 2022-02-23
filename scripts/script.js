@@ -1,3 +1,4 @@
+const popup = document.querySelector('.popup');
 const editButton = document.querySelector('.profile__edit');
 const profileName = document.querySelector('.profile__name');
 const profileInfo = document.querySelector('.profile__description');
@@ -14,10 +15,18 @@ const popupEdit = document.querySelector('.edit-popup');
 const popupPlace = document.querySelector('.place-popup');
 const popupImage = document.querySelector('.popup-image');
 
-
 const cardTemplate = document.querySelector('#card-template').content;
 const elements = document.querySelector('.elements');
 
+const bigImageTitle = document.querySelector('.popup-image__title');
+const bigImageUrl = document.querySelector('.popup-image__url');
+
+const closeButtons = document.querySelectorAll('.popup__close-button');
+
+// Перебор массива, навешивание на них слушателя и передача колбека с аргументом
+closeButtons.forEach((item) => {
+  item.addEventListener('click', () => closePopup(item.closest('.popup')));
+});
 
 // Функция открыть редактирование профиля
 function openEditProfile() {
@@ -26,13 +35,12 @@ function openEditProfile() {
   openPopup(popupEdit)
 }
 
-
 // Функция изменения имени и информации о себе
 function submitEditForm (evt) {
     evt.preventDefault();
     profileName.textContent = popupEditName.value;
     profileInfo.textContent = popupEditDescription.value;
-    closePopup(evt);
+    closePopup(popupEdit);
 }
 
 // Функция нового места
@@ -43,8 +51,8 @@ function submitNewPlaceForm (evt) {
     link: popupNewUrl.value,
     alt: popupNewPlace.value,
   };
-  createCard(newCardObject);
-  closePopup(evt);
+  renderCard(newCardObject);
+  closePopup(popupPlace);
 }
 
 // Следим за кнопкой отправить
@@ -53,14 +61,12 @@ formElementPlace.addEventListener('submit', submitNewPlaceForm);
 
 // Открытие и закрытие попапа
 function openPopup(popup) {
-  const closeButton = popup.querySelector('.popup__close-button');
-  closeButton.addEventListener('click', closePopup);
   popup.classList.add('popup_opened');
 }
 
-function closePopup(event) {
-  console.log('111'+ event.target)
-  event.target.closest('.popup').classList.remove('popup_opened');
+function closePopup(popup) {
+  console.log(popup)
+  popup.classList.remove('popup_opened');
 }
 
 // Создание карточки из шаблона
@@ -70,30 +76,29 @@ function createCard (item) {
   const cardTitle = cardElement.querySelector('.element__title');
   cardElement.querySelector('.element__like').addEventListener('click', doLike);
   cardElement.querySelector('.element__trash').addEventListener('click', () => { cardElement.remove(); });
-
   cardImage.src = item.link;
   cardImage.alt = item.name;
   cardTitle.textContent = item.name;
-  elements.prepend(cardElement);
 
   cardImage.addEventListener('click', function () {
-
-  const bigImageTitle = document.querySelector('.popup-image__title');
-  const bigImageUrl = document.querySelector('.popup-image__url');
-  const bigImageDelete = document.querySelector('.popup-image__close-button');
-  popupImage.classList.add('popup_opened');
+  openPopup(popupImage)
   bigImageTitle.textContent = item.name;
   bigImageUrl.src = item.link;
-
-  bigImageDelete.addEventListener('click', () => popupImage.classList.remove('popup_opened'));
+  bigImageUrl.alt = item.name;
   });
+  return cardElement
+}
+
+// Рендер карточки
+function renderCard(card) {
+  elements.prepend(createCard(card));
 }
 
 // Создание перебором всех карточек
 function createCards() {
   initialCards.forEach(function (element) {
-  createCard(element)}
-);
+    renderCard(element)
+});
 }
 
 // Создать новое место

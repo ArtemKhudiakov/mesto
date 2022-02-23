@@ -5,4 +5,5 @@
   box-sizing: border-box;
   font-family: Inter, sans-serif;
   position: relative;
+  min-height: 100vh;
 }
