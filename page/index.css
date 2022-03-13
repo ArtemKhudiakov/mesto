@@ -45,3 +45,5 @@
 
 @import url(../blocks/popup/__edit-input-error/popup__edit-input-error.css);
 @import url(../blocks/popup/__edit-input-error/_active/popup__edit-input-error_active.css);
+
+@import url(../blocks/popup/__save/_inactive/popup__save_inactive.css);
