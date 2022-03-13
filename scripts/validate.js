@@ -60,9 +60,9 @@ const showError = (formElement, inputElement, errorMessage) => {
 const hideError = (formElement, inputElement) => {
   const errorElement = inputElement.closest('.popup__input').querySelector('.popup__edit-input-error');
   errorElement.classList.remove('popup__edit-input-error_active');
-  errorElement.textContent.reset;
+  errorElement.textContent = '';
 };
- 
+
 // Переключение кнопки
 
 const toggleButtonState = (inputList, buttonElement) => {
