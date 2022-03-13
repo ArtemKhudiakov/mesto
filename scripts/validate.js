@@ -62,7 +62,7 @@ const hideError = (formElement, inputElement) => {
   errorElement.classList.remove('popup__edit-input-error_active');
   errorElement.textContent.reset;
 };
-
+ 
 // Переключение кнопки
 
 const toggleButtonState = (inputList, buttonElement) => {
