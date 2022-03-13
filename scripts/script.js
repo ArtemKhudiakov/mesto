@@ -62,11 +62,13 @@ formElementPlace.addEventListener('submit', submitNewPlaceForm);
 // Открытие и закрытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeEscape);
 }
 
 function closePopup(popup) {
   console.log(popup)
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeEscape);
 }
 
 // Создание карточки из шаблона
@@ -119,3 +121,27 @@ editButton.addEventListener('click', openEditProfile);
 addPlace.addEventListener('click', createNewPlace);
 
 createCards(initialCards);
+
+
+// Закрыть по кнопке Esc
+function closeEscape(event) {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+
+// Закрыть по оверлей
+function closeOverlay(event) {
+  if (event.terget === event.currentTarget) {
+    closePopup(event.terget);
+  }
+}
+
+popup.addEventListener('mousedown', closeOverlay);
+
+// ПР 6 Валидация форм
+
+
+
