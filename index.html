@@ -58,7 +58,11 @@
                 name="user-name"
                 class="popup__edit-input popup__edit-input_type_name"
                 placeholder="Имя"
+                minlength="2"
+                maxlength="40"
+                required
               />
+              <span class="popup__edit-input-error"></span>
             </li>
             <li class="popup__input">
               <input
@@ -66,7 +70,11 @@
                 name="user-description"
                 class="popup__edit-input popup__edit-input_type_description"
                 placeholder="О себе"
+                minlength="2"
+                maxlength="200"
+                required
               />
+              <span class="popup__edit-input-error"></span>
             </li>
           </ul>
           <button type="submit" class="popup__save">Сохранить</button>
@@ -92,7 +100,11 @@
                 name="user-name"
                 class="popup__edit-input popup__edit-input_type_place"
                 placeholder="Название"
+                minlength="2"
+                maxlength="30"
+                required
               />
+              <span class="popup__edit-input-error"></span>
             </li>
             <li class="popup__input">
               <input
@@ -100,7 +112,9 @@
                 name="user-description"
                 class="popup__edit-input popup__edit-input_type_url"
                 placeholder="Ссылка на картинку"
+                required
               />
+              <span class="popup__edit-input-error"></span>
             </li>
           </ul>
           <button type="submit" class="popup__save">Создать</button>
