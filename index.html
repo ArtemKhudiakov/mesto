@@ -50,6 +50,7 @@
           name="edit-popup-Form"
           action="mailto:artemka86ber@gmail.com"
           class="popup__form edit-popup__form"
+          novalidate
         >
           <ul class="popup__inputs">
             <li class="popup__input">
@@ -74,7 +75,7 @@
                 maxlength="200"
                 required
               />
-              <span class="popup__edit-input-error"></span>
+              <span class="popup__edit-input-error popup__edit-input-error_active"></span>
             </li>
           </ul>
           <button type="submit" class="popup__save">Сохранить</button>
@@ -92,6 +93,7 @@
           name="edit-popup-Form"
           action="mailto:artemka86ber@gmail.com"
           class="popup__form place-popup__form"
+          novalidate
         >
           <ul class="popup__inputs">
             <li class="popup__input">
@@ -104,7 +106,7 @@
                 maxlength="30"
                 required
               />
-              <span class="popup__edit-input-error"></span>
+              <span class="popup__edit-input-error popup__edit-input-error_active">Вы пропустили это поле.</span>
             </li>
             <li class="popup__input">
               <input
@@ -114,7 +116,7 @@
                 placeholder="Ссылка на картинку"
                 required
               />
-              <span class="popup__edit-input-error"></span>
+              <span class="popup__edit-input-error popup__edit-input-error_active">Введите адрес сайта.</span>
             </li>
           </ul>
           <button type="submit" class="popup__save">Создать</button>
