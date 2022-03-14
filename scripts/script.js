@@ -53,6 +53,8 @@ function submitNewPlaceForm (evt) {
   };
   renderCard(newCardObject);
   closePopup(popupPlace);
+  popupNewPlace.value = '';
+  popupNewUrl.value = '';
 }
 
 // Следим за кнопкой отправить

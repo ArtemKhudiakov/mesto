@@ -15,9 +15,6 @@ const enableValidation = () => {
   });
 };
 
-
-
-
 // Обработчик всем полям формы перебором массива
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll('.popup__edit-input'));
@@ -36,15 +33,11 @@ const setEventListeners = (formElement) => {
 
 };
 
-
-
 // Проверка валидности поля
 const isValid = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
-
     showError(formElement, inputElement, inputElement.validationMessage);
   } else {
-
     hideError(formElement, inputElement);
   }
 };
@@ -64,7 +57,6 @@ const hideError = (formElement, inputElement) => {
 };
 
 // Переключение кнопки
-
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add('popup__save_inactive');
