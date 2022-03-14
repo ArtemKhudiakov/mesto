@@ -22,7 +22,7 @@ const setEventListeners = (formElement) => {
 
   toggleButtonState(inputList, buttonElement);
 
-  inputList.forEach((inputElement) => {
+  inputList.forEach(inputElement => {
     inputElement.addEventListener('input', (evt) => {
 
       isValid(formElement, inputElement);
@@ -30,13 +30,15 @@ const setEventListeners = (formElement) => {
 
     });
   });
-
 };
 
 // Проверка валидности поля
 const isValid = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showError(formElement, inputElement, inputElement.validationMessage);
+  const isNotValid = !inputElement.validity.valid;
+
+  if (isNotValid) {
+    const errorMessage = inputElement.validationMessage;
+    showError(formElement, inputElement, errorMessage);
   } else {
     hideError(formElement, inputElement);
   }
@@ -45,15 +47,15 @@ const isValid = (formElement, inputElement) => {
 // Показать сообщение ошибки
 const showError = (formElement, inputElement, errorMessage) => {
   const errorElement = inputElement.closest('.popup__input').querySelector('.popup__edit-input-error');
-  errorElement.classList.add('popup__edit-input-error_active');
   errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__edit-input-error_active');
 };
 
 // Скрыть сообщение ошибки
 const hideError = (formElement, inputElement) => {
   const errorElement = inputElement.closest('.popup__input').querySelector('.popup__edit-input-error');
-  errorElement.classList.remove('popup__edit-input-error_active');
   errorElement.textContent = '';
+  errorElement.classList.remove('popup__edit-input-error_active');
 };
 
 // Переключение кнопки
