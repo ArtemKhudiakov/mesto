@@ -1,4 +1,3 @@
-const popup = document.querySelector('.popup');
 const editButton = document.querySelector('.profile__edit');
 const profileName = document.querySelector('.profile__name');
 const profileInfo = document.querySelector('.profile__description');
@@ -44,8 +43,9 @@ function submitEditForm (evt) {
 }
 
 // Функция нового места
-function submitNewPlaceForm (evt) {
+function submitNewPlaceForm (evt,settings) {
   evt.preventDefault();
+  const disabledButton = formElementPlace.querySelector('.popup__save');
   const newCardObject = {
     name: popupNewPlace.value,
     link: popupNewUrl.value,
@@ -53,8 +53,9 @@ function submitNewPlaceForm (evt) {
   };
   renderCard(newCardObject);
   closePopup(popupPlace);
-  popupNewPlace.value = '';
-  popupNewUrl.value = '';
+  formElementPlace.reset();
+  disabledButton.classList.add('popup__save_inactive');
+  disabledButton.setAttribute('disabled', true);
 }
 
 // Следим за кнопкой отправить
@@ -69,7 +70,6 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
-  console.log(popup)
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeEscape);
   popup.removeEventListener('mousedown', closeOverlay);
@@ -109,8 +109,6 @@ function createCards() {
 
 // Создать новое место
 function createNewPlace() {
-
-  console.log(popupPlace);
   openPopup(popupPlace);
 }
 
@@ -142,9 +140,3 @@ function closeOverlay(event) {
     closePopup(event.target);
   }
 }
-
-
-// ПР 6 Валидация форм
-
-
-
