@@ -124,7 +124,6 @@ addPlace.addEventListener('click', createNewPlace);
 
 createCards(initialCards);
 
-
 // Закрыть по кнопке Esc
 function closeEscape(event) {
   if (event.key === 'Escape') {
@@ -132,7 +131,6 @@ function closeEscape(event) {
     closePopup(openedPopup);
   }
 }
-
 
 // Закрыть по оверлей
 function closeOverlay(event) {
