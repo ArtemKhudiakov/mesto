@@ -1,4 +1,5 @@
 // Валидация
+// Объект Валидации
 const validationSettings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__edit-input',
