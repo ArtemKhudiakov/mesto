@@ -1,9 +1,9 @@
-import { bigImageTitle, bigImageUrl, popupImage, openPopup } from './script.js';
 export class Card {
-  constructor(data, cardTemplateSelector) {
+  constructor(data, cardTemplateSelector, handleCardClick) {
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
     this._name = data.name;
     this._link = data.link;
+    this._handleCardClick = handleCardClick;
   }
 
   createCard () {
@@ -26,25 +26,15 @@ export class Card {
     elementLike.classList.toggle('element__like_active');
   }
   // Удалить карточку
-  _deleteCard() {
+  _deleteCard = () => {
     this._cardElement.remove();
   };
-
-  //
-  _handlePreview() {
-    openPopup(popupImage)
-    bigImageTitle.textContent = this._name;
-    bigImageUrl.src = this._link;
-    bigImageUrl.alt = this._name;
-    };
 
   //
   _setEventListeners() {
     this._cardElement.querySelector('.element__like').addEventListener('click', this._doLike);
     this._cardElement.querySelector('.element__trash').addEventListener('click', this._deleteCard);
-    this._cardImage.addEventListener('click', this._handlePreview);
+    this._cardImage.addEventListener('click', () => {this._handleCardClick(this._name, this._link)});
   }
-
-
 }
 

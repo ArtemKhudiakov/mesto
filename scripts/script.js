@@ -26,6 +26,8 @@ export const bigImageUrl = document.querySelector('.popup-image__url');
 
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
+const templateSelector = '#card-template';
+
 // Объект Валидации
 const validationSettings = {
   formSelector: '.popup__form',
@@ -75,6 +77,13 @@ function submitEditForm (evt) {
     profileInfo.textContent = popupEditDescription.value;
     closePopup(popupEdit);
 }
+
+const handlePreview = (name, link) => {
+  openPopup(popupImage)
+  bigImageTitle.textContent = name;
+  bigImageUrl.src = link;
+  bigImageUrl.alt = name;
+  };
 
 // Функция нового места
 function submitNewPlaceForm (evt,settings) {
@@ -131,7 +140,7 @@ function closePopup(popup) {
 
 // Рендер карточки
 function renderCard(card) {
-  const newCard = new Card(card);
+  const newCard = new Card(card, templateSelector, handlePreview);
   const cardElement = newCard.createCard();
   elements.prepend(cardElement);
 }
