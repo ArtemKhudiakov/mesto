@@ -24,6 +24,24 @@ const bigImageUrl = document.querySelector('.popup-image__url');
 
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
+// Объект Валидации
+const validationSettings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__edit-input',
+  buttonSelector: '.popup__save',
+  inputClosestSelector: '.popup__input',
+  inactiveButtonClass: 'popup__save_inactive',
+  inputErrorClass: '.popup__edit-input-error',
+  errorClass: 'popup__edit-input-error_active'
+}
+
+// Запуск валидации
+const forms = Array.from(document.forms);
+forms.forEach((form) => {
+  const validator = new FormValidator(validationSettings, form);
+  validator.enableValidation();
+})
+
 // Перебор массива, навешивание на них слушателя и передача колбека с аргументом
 closeButtons.forEach((item) => {
   item.addEventListener('click', () => closePopup(item.closest('.popup')));
