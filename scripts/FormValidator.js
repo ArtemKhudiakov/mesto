@@ -1,17 +1,17 @@
 class FormValidator {
 
-  constructor(validitySettings, formElement) {
+  constructor(validitySettings, form) {
     this._validitySettings = validitySettings;
-    this._formElement = formElement;
+    this._form = form;
   };
 
   // Обработчик всем формам перебором массива форм
   enableValidation() {
 
-    this._formElement.addEventListener('submit', (evt) => {
+    this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    this._setEventListeners(formElement, settings);
+    this._setEventListeners();
   };
 
   // Обработчик всем полям формы перебором массива
@@ -23,25 +23,49 @@ class FormValidator {
     inputList.forEach(inputElement => {
       inputElement.addEventListener('input', (evt) => {
 
-        isValid(this._formElement, inputElement, settings);
-        toggleButtonState(inputList, buttonElement, settings);
+        this._isValid(inputElement);
+        this._toggleButtonState(inputList, buttonElement);
 
       });
     });
   };
-  
+
   // Проверка валидности поля
-  isValid = (formElement, inputElement, settings) => {
+  _isValid (inputElement) {
     const isNotValid = !inputElement.validity.valid;
 
     if (isNotValid) {
       const errorMessage = inputElement.validationMessage;
-      showError(formElement, inputElement, errorMessage, settings);
+      this._showError(inputElement, errorMessage);
     } else {
-      hideError(formElement, inputElement, settings);
+      this._hideError(inputElement);
     }
 };
 
+  // Переключение кнопки
+    _toggleButtonState (inputList, buttonElement) {
+    if (hasInvalidInput(inputList)) {
+      buttonElement.classList.add(this._validitySettings.inactiveButtonClass);
+      buttonElement.setAttribute('disabled', true);
+    } else {
+      buttonElement.classList.remove(this._validitySettings.inactiveButtonClass);
+      buttonElement.removeAttribute('disabled');
+    }
+  };
+
+  // Показать сообщение ошибки
+  _showError (inputElement, errorMessage) {
+    const errorElement = inputElement.closest(this._validitySettings.inputClosestSelector).querySelector(this._validitySettings.inputErrorClass);
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(this._validitySettings.errorClass);
+};
+
+// Скрыть сообщение ошибки
+  _hideError(inputElement) {
+    const errorElement = inputElement.closest(this._validitySettings.inputClosestSelector).querySelector(this._validitySettings.inputErrorClass);
+    errorElement.textContent = '';
+    errorElement.classList.remove(this._validitySettings.errorClass);
+};
 
 
 }
