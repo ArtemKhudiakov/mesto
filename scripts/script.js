@@ -16,13 +16,13 @@ const addPlace = document.querySelector('.profile__add-button');
 
 const popupEdit = document.querySelector('.edit-popup');
 const popupPlace = document.querySelector('.place-popup');
-const popupImage = document.querySelector('.popup-image');
+export const popupImage = document.querySelector('.popup-image');
 
 // const cardTemplate = document.querySelector('#card-template').content;
 const elements = document.querySelector('.elements');
 
-const bigImageTitle = document.querySelector('.popup-image__title');
-const bigImageUrl = document.querySelector('.popup-image__url');
+export const bigImageTitle = document.querySelector('.popup-image__title');
+export const bigImageUrl = document.querySelector('.popup-image__url');
 
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
@@ -97,7 +97,7 @@ formElementEdit.addEventListener('submit', submitEditForm);
 formElementPlace.addEventListener('submit', submitNewPlaceForm);
 
 // Открытие и закрытие попапа
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeEscape);
   popup.addEventListener('mousedown', closeOverlay);
@@ -131,32 +131,24 @@ function closePopup(popup) {
 
 // Рендер карточки
 function renderCard(card) {
-  elements.prepend(createCard(card));
+  const newCard = new Card(card);
+  const cardElement = newCard.createCard();
+  elements.prepend(cardElement);
 }
 
 // Создание перебором всех карточек
-function createCards() {
-  initialCards.forEach(function (element) {
+initialCards.forEach(function (element) {
     renderCard(element)
 });
-}
 
 // Создать новое место
 function createNewPlace() {
   openPopup(popupPlace);
 }
 
-// // Сделать лайк
-// function doLike(event) {
-//   const elementLike = event.target;
-//   elementLike.classList.toggle('element__like_active');
-// }
-
 // Слушатели
 editButton.addEventListener('click', openEditProfile);
 addPlace.addEventListener('click', createNewPlace);
-
-createCards(initialCards);
 
 // Закрыть по кнопке Esc
 function closeEscape(event) {
