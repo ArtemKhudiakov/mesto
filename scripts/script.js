@@ -34,13 +34,24 @@ const validationSettings = {
   inputErrorClass: '.popup__edit-input-error',
   errorClass: 'popup__edit-input-error_active'
 }
+console.log(document.forms)
 
 // Запуск валидации
-const forms = Array.from(document.forms);
-forms.forEach((form) => {
-  const validator = new FormValidator(validationSettings, form);
-  validator.enableValidation();
-})
+// const forms = Array.from(document.forms);
+// forms.forEach((form) => {
+//   const validator = new FormValidator(validationSettings, form);
+//   validator.enableValidation();
+// })
+
+const editForm = popupEdit.querySelector('.popup__form');
+const placeForm = popupPlace.querySelector('.popup__form');
+
+const editFormValidation = new FormValidator(validationSettings, editForm)
+const placeFormValidation = new FormValidator(validationSettings, placeForm)
+
+editFormValidation.enableValidation();
+placeFormValidation.enableValidation();
+
 
 // Перебор массива, навешивание на них слушателя и передача колбека с аргументом
 closeButtons.forEach((item) => {

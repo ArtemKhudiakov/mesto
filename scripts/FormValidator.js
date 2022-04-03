@@ -16,8 +16,8 @@ export class FormValidator {
 
   // Обработчик всем полям формы перебором массива
   _setEventListeners() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._validitySettings.inputSelector));
-    const buttonElement = this._formElement.querySelector(this._validitySettings.buttonSelector);
+    const inputList = Array.from(this._form.querySelectorAll(this._validitySettings.inputSelector));
+    const buttonElement = this._form.querySelector(this._validitySettings.buttonSelector);
     this._toggleButtonState(inputList, buttonElement);
 
     inputList.forEach(inputElement => {
