@@ -5,7 +5,7 @@ export class Card {
     this._link = data.link;
     this._handleCardClick = handleCardClick;
   }
-
+  // Сделать карточку
   createCard () {
     this._cardElement = this._cardTemplate.querySelector('.element').cloneNode(true);
     this._cardImage = this._cardElement.querySelector('.element__image');
@@ -30,7 +30,7 @@ export class Card {
     this._cardElement.remove();
   };
 
-  //
+  //Повесить слушателей
   _setEventListeners() {
     this._cardElement.querySelector('.element__like').addEventListener('click', this._doLike);
     this._cardElement.querySelector('.element__trash').addEventListener('click', this._deleteCard);

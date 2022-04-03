@@ -43,7 +43,7 @@ export class FormValidator {
 };
 
   // Переключение кнопки
-    _toggleButtonState (inputList, buttonElement) {
+  _toggleButtonState (inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(this._validitySettings.inactiveButtonClass);
       buttonElement.setAttribute('disabled', true);
@@ -74,7 +74,4 @@ export class FormValidator {
     errorElement.textContent = '';
     errorElement.classList.remove(this._validitySettings.errorClass);
 };
-
-
 }
-

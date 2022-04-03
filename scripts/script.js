@@ -16,13 +16,13 @@ const addPlace = document.querySelector('.profile__add-button');
 
 const popupEdit = document.querySelector('.edit-popup');
 const popupPlace = document.querySelector('.place-popup');
-export const popupImage = document.querySelector('.popup-image');
+const popupImage = document.querySelector('.popup-image');
 
 // const cardTemplate = document.querySelector('#card-template').content;
 const elements = document.querySelector('.elements');
 
-export const bigImageTitle = document.querySelector('.popup-image__title');
-export const bigImageUrl = document.querySelector('.popup-image__url');
+const bigImageTitle = document.querySelector('.popup-image__title');
+const bigImageUrl = document.querySelector('.popup-image__url');
 
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
@@ -38,7 +38,6 @@ const validationSettings = {
   inputErrorClass: '.popup__edit-input-error',
   errorClass: 'popup__edit-input-error_active'
 }
-
 
 // Запуск валидации
 
@@ -56,7 +55,6 @@ const placeFormValidation = new FormValidator(validationSettings, placeForm)
 
 editFormValidation.enableValidation();
 placeFormValidation.enableValidation();
-
 
 // Перебор массива, навешивание на них слушателя и передача колбека с аргументом
 closeButtons.forEach((item) => {
@@ -117,26 +115,6 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closeEscape);
   popup.removeEventListener('mousedown', closeOverlay);
 }
-
-// Создание карточки из шаблона
-// function createCard (item) {
-//   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-//   const cardImage = cardElement.querySelector('.element__image');
-//   const cardTitle = cardElement.querySelector('.element__title');
-//   cardElement.querySelector('.element__like').addEventListener('click', doLike);
-//   cardElement.querySelector('.element__trash').addEventListener('click', () => { cardElement.remove(); });
-//   cardImage.src = item.link;
-//   cardImage.alt = item.name;
-//   cardTitle.textContent = item.name;
-
-//   cardImage.addEventListener('click', function () {
-//   openPopup(popupImage)
-//   bigImageTitle.textContent = item.name;
-//   bigImageUrl.src = item.link;
-//   bigImageUrl.alt = item.name;
-//   });
-//   return cardElement
-// }
 
 // Рендер карточки
 function renderCard(card) {
