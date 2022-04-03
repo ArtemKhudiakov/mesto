@@ -1,4 +1,6 @@
+import { initialCards } from "./cards.js"
 import { FormValidator } from "./FormValidator.js";
+import { Card } from "./Card.js"
 
 const editButton = document.querySelector('.profile__edit');
 const profileName = document.querySelector('.profile__name');
@@ -16,7 +18,7 @@ const popupEdit = document.querySelector('.edit-popup');
 const popupPlace = document.querySelector('.place-popup');
 const popupImage = document.querySelector('.popup-image');
 
-const cardTemplate = document.querySelector('#card-template').content;
+// const cardTemplate = document.querySelector('#card-template').content;
 const elements = document.querySelector('.elements');
 
 const bigImageTitle = document.querySelector('.popup-image__title');
@@ -34,9 +36,10 @@ const validationSettings = {
   inputErrorClass: '.popup__edit-input-error',
   errorClass: 'popup__edit-input-error_active'
 }
-console.log(document.forms)
+
 
 // Запуск валидации
+
 // const forms = Array.from(document.forms);
 // forms.forEach((form) => {
 //   const validator = new FormValidator(validationSettings, form);
@@ -107,24 +110,24 @@ function closePopup(popup) {
 }
 
 // Создание карточки из шаблона
-function createCard (item) {
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  const cardImage = cardElement.querySelector('.element__image');
-  const cardTitle = cardElement.querySelector('.element__title');
-  cardElement.querySelector('.element__like').addEventListener('click', doLike);
-  cardElement.querySelector('.element__trash').addEventListener('click', () => { cardElement.remove(); });
-  cardImage.src = item.link;
-  cardImage.alt = item.name;
-  cardTitle.textContent = item.name;
+// function createCard (item) {
+//   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+//   const cardImage = cardElement.querySelector('.element__image');
+//   const cardTitle = cardElement.querySelector('.element__title');
+//   cardElement.querySelector('.element__like').addEventListener('click', doLike);
+//   cardElement.querySelector('.element__trash').addEventListener('click', () => { cardElement.remove(); });
+//   cardImage.src = item.link;
+//   cardImage.alt = item.name;
+//   cardTitle.textContent = item.name;
 
-  cardImage.addEventListener('click', function () {
-  openPopup(popupImage)
-  bigImageTitle.textContent = item.name;
-  bigImageUrl.src = item.link;
-  bigImageUrl.alt = item.name;
-  });
-  return cardElement
-}
+//   cardImage.addEventListener('click', function () {
+//   openPopup(popupImage)
+//   bigImageTitle.textContent = item.name;
+//   bigImageUrl.src = item.link;
+//   bigImageUrl.alt = item.name;
+//   });
+//   return cardElement
+// }
 
 // Рендер карточки
 function renderCard(card) {
@@ -143,11 +146,11 @@ function createNewPlace() {
   openPopup(popupPlace);
 }
 
-// Сделать лайк
-function doLike(event) {
-  const elementLike = event.target;
-  elementLike.classList.toggle('element__like_active');
-}
+// // Сделать лайк
+// function doLike(event) {
+//   const elementLike = event.target;
+//   elementLike.classList.toggle('element__like_active');
+// }
 
 // Слушатели
 editButton.addEventListener('click', openEditProfile);
