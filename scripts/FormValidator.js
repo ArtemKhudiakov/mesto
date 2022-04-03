@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
 
   constructor(validitySettings, form) {
     this._validitySettings = validitySettings;
@@ -18,10 +18,10 @@ class FormValidator {
   _setEventListeners() {
     const inputList = Array.from(this._formElement.querySelectorAll(this._validitySettings.inputSelector));
     const buttonElement = this._formElement.querySelector(this._validitySettings.buttonSelector);
-    toggleButtonState(inputList, buttonElement, this._validitySettings);
+    this._toggleButtonState(inputList, buttonElement);
 
     inputList.forEach(inputElement => {
-      inputElement.addEventListener('input', (evt) => {
+      inputElement.addEventListener('input', () => {
 
         this._isValid(inputElement);
         this._toggleButtonState(inputList, buttonElement);
@@ -44,13 +44,21 @@ class FormValidator {
 
   // Переключение кнопки
     _toggleButtonState (inputList, buttonElement) {
-    if (hasInvalidInput(inputList)) {
+    if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(this._validitySettings.inactiveButtonClass);
       buttonElement.setAttribute('disabled', true);
     } else {
       buttonElement.classList.remove(this._validitySettings.inactiveButtonClass);
       buttonElement.removeAttribute('disabled');
     }
+  };
+
+  // Проверяем поле на все валидности
+  _hasInvalidInput (inputList) {
+    return inputList.some((inputElement) => {
+
+      return !inputElement.validity.valid;
+    })
   };
 
   // Показать сообщение ошибки

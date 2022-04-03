@@ -1,3 +1,5 @@
+import { FormValidator } from "./FormValidator.js";
+
 const editButton = document.querySelector('.profile__edit');
 const profileName = document.querySelector('.profile__name');
 const profileInfo = document.querySelector('.profile__description');
