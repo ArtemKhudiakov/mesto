@@ -21,19 +21,19 @@ export class Card {
   }
 
   // Сделать лайк
-  _doLike(event) {
-    const elementLike = event.target;
+  _handleLikeClick = () => {
+    const elementLike = this._cardElement.querySelector('.element__like');
     elementLike.classList.toggle('element__like_active');
   }
   // Удалить карточку
-  _deleteCard = () => {
+  _handleDeleteCard = () => {
     this._cardElement.remove();
   };
 
   //Повесить слушателей
   _setEventListeners() {
-    this._cardElement.querySelector('.element__like').addEventListener('click', this._doLike);
-    this._cardElement.querySelector('.element__trash').addEventListener('click', this._deleteCard);
+    this._cardElement.querySelector('.element__like').addEventListener('click', this._handleLikeClick);
+    this._cardElement.querySelector('.element__trash').addEventListener('click', this._handleDeleteCard);
     this._cardImage.addEventListener('click', () => {this._handleCardClick(this._name, this._link)});
   }
 }
