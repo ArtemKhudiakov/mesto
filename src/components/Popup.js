@@ -23,10 +23,10 @@ export class Popup {
   setEventListeners() {
     this._popup.addEventListener('mousedown', (event) => {
       if (event.target === event.currentTarget) {
-        this._popup.close()}
+        this.close()}
       });
     this._closeButton.addEventListener('click', () => {
-      this._popup.close()});
+      this.close()});
   }
 }
 

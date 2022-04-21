@@ -33,13 +33,11 @@ const placeFormValidation = new FormValidator(validationSettings, buttonPlaceFor
 profileFormValidation.enableValidation();
 placeFormValidation.enableValidation();
 
-
 // Создание информации из профиля
 const userInfo = new UserInfo ({
   nameSelector: '.profile__name',
   infoSelector: '.profile__description',
 })
-console.log(userInfo.nameSelector)
 
 // Создание попапа редактирования профиля
 const typePopupEditProfile = new PopupWithForm(popupEdit,
@@ -86,7 +84,7 @@ const cardsSection = new Section({
     return cardElement;
   }
 }, elements);
-
+console.log(cardsSection)
 cardsSection.renderAll();
 
 typePopupNewPlace.setEventListeners();
