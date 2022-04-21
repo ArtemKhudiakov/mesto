@@ -37,23 +37,27 @@ placeFormValidation.enableValidation();
 const userInfo = new UserInfo ({
   nameSelector: '.profile__name',
   infoSelector: '.profile__description',
-})
+});
 
 // Создание попапа редактирования профиля
 const typePopupEditProfile = new PopupWithForm(popupEdit,
   {
-    handleSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    handleSubmit: (userData) => {
+    userInfo.setUserInfo(userData);
+
     typePopupEditProfile.close();
+    }
   }
-});
+);
 
 // Функция открытия редактирования профиля
 function openEditProfile() {
   const userData = userInfo.getUserInfo();
   popupEditName.value = userData.name;
+  console.log(userData.name)
   popupEditDescription.value = userData.info;
   typePopupEditProfile.open();
+  console.log(popupEditName)
 }
 
 // Создание попапа создания карточки
@@ -76,7 +80,7 @@ const cardsSection = new Section({
     const card = new Card(
       {name, link}, templateSelector, () => {
         const typePopupImage = new PopupWithImage(popupImage);
-        typePopupImage.open(item.place, item.link);
+        typePopupImage.open(name, link);
         typePopupImage.setEventListeners();
       }
     );
@@ -84,7 +88,7 @@ const cardsSection = new Section({
     return cardElement;
   }
 }, elements);
-console.log(cardsSection)
+
 cardsSection.renderAll();
 
 typePopupNewPlace.setEventListeners();
