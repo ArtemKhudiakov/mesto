@@ -1,4 +1,4 @@
-import { initialCards } from "../utils/cards"
+import { initialCards } from "../utils/cards.js"
 import { FormValidator } from "../components/FormValidator.js";
 import { Card } from "../components/Card.js"
 import { Section } from '../components/Section.js';
@@ -14,14 +14,16 @@ import { validationSettings,
   popupImage,
   buttonAddPlace,
   editButton,
-  profileName,
-  profileInfo,
+  // profileName,
+  // profileInfo,
   popupEditName,
   popupEditDescription,
-  formElementEdit,
-  formElementPlace,
-  popupNewPlace,
-  popupNewUrl,
+  // formElementEdit,
+  // formElementPlace,
+  // popupNewPlace,
+  // popupNewUrl,
+  templateSelector,
+  elements,
 } from '../utils/constants.js';
 
 // Валидация
@@ -37,6 +39,7 @@ const userInfo = new UserInfo ({
   nameSelector: '.profile__name',
   infoSelector: '.profile__description',
 })
+console.log(userInfo.nameSelector)
 
 // Создание попапа редактирования профиля
 const typePopupEditProfile = new PopupWithForm(popupEdit,
@@ -64,53 +67,55 @@ const typePopupNewPlace = new PopupWithForm(popupPlace,
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
 // Функция открытия создания новой карточки
 function createNewPlace() {
   typePopupNewPlace.open();
 }
 
-// Рендер карточки
-function renderCard(card) {
-  const newCard = new Card(card, templateSelector, handlePreview);
-  const cardElement = newCard.createCard();
-  elements.prepend(cardElement);
-}
+const cardsSection = new Section({
+  items: initialCards,
+  renderer: ({name, link}) => {
+    const card = new Card(
+      {name, link}, templateSelector, () => {
+        const typePopupImage = new PopupWithImage(popupImage);
+        typePopupImage.open(item.place, item.link);
+        typePopupImage.setEventListeners();
+      }
+    );
+    const cardElement = card.createCard();
+    return cardElement;
+  }
+}, elements);
 
-// Функция нового места
-function submitNewPlaceForm (evt,settings) {
-  evt.preventDefault();
-  const disabledButton = formElementPlace.querySelector('.popup__save');
-  const newCardObject = {
-    name: popupNewPlace.value,
-    link: popupNewUrl.value,
-    alt: popupNewPlace.value,
-  };
-  renderCard(newCardObject);
-  closePopup(popupPlace);
-  formElementPlace.reset();
-  disabledButton.classList.add('popup__save_inactive');
-  disabledButton.setAttribute('disabled', true);
-}
+cardsSection.renderAll();
+
+typePopupNewPlace.setEventListeners();
+typePopupEditProfile.setEventListeners();
+
+// // Функция нового места
+// function submitNewPlaceForm (evt,settings) {
+//   evt.preventDefault();
+//   const disabledButton = formElementPlace.querySelector('.popup__save');
+//   const newCardObject = {
+//     name: popupNewPlace.value,
+//     link: popupNewUrl.value,
+//     alt: popupNewPlace.value,
+//   };
+//   renderCard(newCardObject);
+//   closePopup(popupPlace);
+//   formElementPlace.reset();
+//   disabledButton.classList.add('popup__save_inactive');
+//   disabledButton.setAttribute('disabled', true);
+// }
 
 // Следим за кнопкой отправить
-formElementEdit.addEventListener('submit', submitEditForm);
-formElementPlace.addEventListener('submit', submitNewPlaceForm);
+// formElementEdit.addEventListener('submit', submitEditForm);
+// formElementPlace.addEventListener('submit', submitNewPlaceForm);
 
-// Создание перебором всех карточек
-initialCards.forEach(function (element) {
-    renderCard(element)
-});
+// // Создание перебором всех карточек
+// initialCards.forEach(function (element) {
+//     renderCard(element)
+// });
 
 
 // Слушатели

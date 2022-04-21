@@ -15,14 +15,14 @@ export const popupEdit = document.querySelector('.edit-popup');
 export const popupPlace = document.querySelector('.place-popup');
 export const popupImage = document.querySelector('.popup-image');
 
-const elements = document.querySelector('.elements');
+export const elements = document.querySelector('.elements');
 
-const bigImageTitle = document.querySelector('.popup-image__title');
-const bigImageUrl = document.querySelector('.popup-image__url');
+export const bigImageTitle = document.querySelector('.popup-image__title');
+export const bigImageUrl = document.querySelector('.popup-image__url');
 
-const closeButtons = document.querySelectorAll('.popup__close-button');
+export const closeButtons = document.querySelectorAll('.popup__close-button');
 
-const templateSelector = '#card-template';
+export const templateSelector = '#card-template';
 
 // Объект Валидации
 export const validationSettings = {
