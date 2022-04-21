@@ -1,3 +1,5 @@
+import "./index.css"
+
 import { initialCards } from "../utils/cards.js"
 import { FormValidator } from "../components/FormValidator.js";
 import { Card } from "../components/Card.js"
@@ -59,21 +61,7 @@ function openEditProfile() {
   typePopupEditProfile.open();
   console.log(popupEditName)
 }
-
-// Создание попапа создания карточки
-const typePopupNewPlace = new PopupWithForm(popupPlace,
-  {
-    handleSubmit: (data) => {
-    cardsSection.addItem(data);
-    typePopupNewPlace.close();
-  }
-});
-
-// Функция открытия создания новой карточки
-function createNewPlace() {
-  typePopupNewPlace.open();
-}
-
+// Секция карточек
 const cardsSection = new Section({
   items: initialCards,
   renderer: ({name, link}) => {
@@ -90,6 +78,22 @@ const cardsSection = new Section({
 }, elements);
 
 cardsSection.renderAll();
+
+// Создание попапа создания карточки
+const typePopupNewPlace = new PopupWithForm(popupPlace,
+  {
+    handleSubmit: (data) => {
+    cardsSection.addItem(data);
+    typePopupNewPlace.close();
+  }
+});
+
+// Функция открытия создания новой карточки
+function createNewPlace() {
+  typePopupNewPlace.open();
+}
+
+
 
 typePopupNewPlace.setEventListeners();
 typePopupEditProfile.setEventListeners();
