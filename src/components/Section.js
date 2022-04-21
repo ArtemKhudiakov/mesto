@@ -6,12 +6,12 @@ export class Section {
   }
 
   renderAll() {
-    this._items.forEach(item => {
-      this._renderer(item)
+    this._items.forEach((item) => {
+      this.addItem(item)
     });
   }
 
   addItem(element) {
-    this._container.append(element);
+    this._container.append(this._renderer(element));
   }
 }
