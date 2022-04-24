@@ -16,14 +16,8 @@ import { validationSettings,
   popupImage,
   buttonAddPlace,
   editButton,
-  // profileName,
-  // profileInfo,
   popupEditName,
   popupEditDescription,
-  // formElementEdit,
-  // formElementPlace,
-  // popupNewPlace,
-  // popupNewUrl,
   templateSelector,
   elements,
 } from '../utils/constants.js';
@@ -56,74 +50,54 @@ const typePopupEditProfile = new PopupWithForm(popupEdit,
 function openEditProfile() {
   const userData = userInfo.getUserInfo();
   popupEditName.value = userData.name;
-  console.log(userData.name)
   popupEditDescription.value = userData.info;
+  profileFormValidation.disableButton();
+  profileFormValidation.resetError();
   typePopupEditProfile.open();
-  console.log(popupEditName)
 }
+
+// Функция создания новой карточки
+function makeCard(item) {
+  const card = new Card(item, templateSelector,
+    () => {typePopupImage.open(item)});
+  const newCard = card.createCard()
+  return newCard;
+};
+
 // Секция карточек
 const cardsSection = new Section({
   items: initialCards,
-  renderer: ({name, link}) => {
-    const card = new Card(
-      {name, link}, templateSelector, () => {
-        const typePopupImage = new PopupWithImage(popupImage);
-        typePopupImage.open(name, link);
-        typePopupImage.setEventListeners();
-      }
-    );
-    const cardElement = card.createCard();
-    return cardElement;
+  renderer: (item) => {
+    const card = makeCard(item);
+    cardsSection.addItem(card);
   }
 }, elements);
 
 cardsSection.renderAll();
 
+const typePopupImage = new PopupWithImage(popupImage);
+
 // Создание попапа создания карточки
 const typePopupNewPlace = new PopupWithForm(popupPlace,
   {
     handleSubmit: (data) => {
-    cardsSection.addItem(data);
+    const card = makeCard(data);
+    cardsSection.addItem(card);
     typePopupNewPlace.close();
   }
 });
 
 // Функция открытия создания новой карточки
 function createNewPlace() {
+  placeFormValidation.disableButton();
+  placeFormValidation.resetError();
   typePopupNewPlace.open();
 }
 
-
-
+typePopupImage.setEventListeners();
 typePopupNewPlace.setEventListeners();
 typePopupEditProfile.setEventListeners();
 
-// // Функция нового места
-// function submitNewPlaceForm (evt,settings) {
-//   evt.preventDefault();
-//   const disabledButton = formElementPlace.querySelector('.popup__save');
-//   const newCardObject = {
-//     name: popupNewPlace.value,
-//     link: popupNewUrl.value,
-//     alt: popupNewPlace.value,
-//   };
-//   renderCard(newCardObject);
-//   closePopup(popupPlace);
-//   formElementPlace.reset();
-//   disabledButton.classList.add('popup__save_inactive');
-//   disabledButton.setAttribute('disabled', true);
-// }
-
-// Следим за кнопкой отправить
-// formElementEdit.addEventListener('submit', submitEditForm);
-// formElementPlace.addEventListener('submit', submitNewPlaceForm);
-
-// // Создание перебором всех карточек
-// initialCards.forEach(function (element) {
-//     renderCard(element)
-// });
-
-
-// Слушатели
+// Слушатели на кнопки
 editButton.addEventListener('click', openEditProfile);
 buttonAddPlace.addEventListener('click', createNewPlace);

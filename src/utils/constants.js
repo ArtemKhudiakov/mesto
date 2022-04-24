@@ -11,11 +11,11 @@ export const popupNewUrl = document.querySelector('.popup__edit-input_type_url')
 
 export const buttonAddPlace = document.querySelector('.profile__add-button');
 
-export const popupEdit = document.querySelector('.edit-popup');
-export const popupPlace = document.querySelector('.place-popup');
-export const popupImage = document.querySelector('.popup-image');
+export const popupEdit = '.edit-popup';
+export const popupPlace = '.place-popup';
+export const popupImage = '.popup-image';
 
-export const elements = document.querySelector('.elements');
+export const elements = '.elements';
 
 export const bigImageTitle = document.querySelector('.popup-image__title');
 export const bigImageUrl = document.querySelector('.popup-image__url');
@@ -35,5 +35,5 @@ export const validationSettings = {
   errorClass: 'popup__edit-input-error_active'
 }
 
-export const buttonEditForm = popupEdit.querySelector('.popup__form');
-export const buttonPlaceForm = popupPlace.querySelector('.popup__form');
+export const buttonEditForm = document.querySelector('.edit-popup__form');
+export const buttonPlaceForm = document.querySelector('.place-popup__form');

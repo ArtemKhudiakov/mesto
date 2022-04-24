@@ -28,6 +28,7 @@ export class Card {
   // Удалить карточку
   _handleDeleteCard = () => {
     this._cardElement.remove();
+    this._cardElement = null;
   };
 
   //Повесить слушателей
