@@ -18,13 +18,13 @@ export class FormValidator {
   _setEventListeners() {
     this._inputList = Array.from(this._form.querySelectorAll(this._validitySettings.inputSelector));
     this._buttonElement = this._form.querySelector(this._validitySettings.buttonSelector);
-    this.toggleButtonState(this._inputList, this._buttonElement);
+    this._toggleButtonState(this._inputList, this._buttonElement);
 
     this._inputList.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
 
         this._isValid(inputElement);
-        this.toggleButtonState();
+        this._toggleButtonState();
 
       });
     });
@@ -48,7 +48,7 @@ export class FormValidator {
   }
 
   // Переключение кнопки
-  toggleButtonState() {
+  _toggleButtonState() {
     if (this._hasInvalidInput()) {
       this.disableButton()
     } else {
