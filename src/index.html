@@ -19,11 +19,18 @@
 
       <main class="content">
         <section class="profile">
-          <img
+          <div class="profile__container">
+            <img
             src="<%=require('./images/avatar.jpg')%>"
             alt="Аватар профайла"
             class="profile__avatar"
           />
+          <img
+          src="<%=require('./images/Vector-edit.svg')%>"
+          alt="Редактировать аватар"
+          class="profile__avatar-edit"
+          />
+        </div>
           <div class="profile__wrap">
             <div class="profile__name-wrapper">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -150,20 +157,20 @@
       </div>
     </div>
     <!-- Попап обновления аватара -->
-    <div class="popup popup-avatar popup_opened">
+    <div class="popup popup-avatar">
       <div class="popup-avatar__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup-avatar__title">Обновить аватар</h2>
         <form
           name="edit-popup-Form"
           action="mailto:artemka86ber@gmail.com"
-          class="popup__form place-popup__form"
+          class="popup__form avatar-popup__form"
           novalidate
         >
 
         <input
         type="url"
-        name="link"
+        name="avatar"
         class="popup__edit-input popup__edit-input_type_url popup-avatar__input"
         placeholder="Ссылка на картинку"
         required

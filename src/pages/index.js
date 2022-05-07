@@ -12,9 +12,13 @@ import { Api } from '../components/Api.js';
 import { validationSettings,
   buttonEditForm,
   buttonPlaceForm,
+  buttonAvatarForm,
   popupEdit,
   popupPlace,
   popupImage,
+  popupAvatar,
+  buttonEditAvatar,
+  popupConfirm,
   buttonAddPlace,
   editButton,
   popupEditName,
@@ -28,7 +32,9 @@ let userId = null
 // Валидация
 const profileFormValidation = new FormValidator(validationSettings, buttonEditForm)
 const placeFormValidation = new FormValidator(validationSettings, buttonPlaceForm)
+// const avatarFormValidation = new FormValidator(validationSettings, buttonAvatarForm)
 
+// avatarFormValidation.enableValidation();
 profileFormValidation.enableValidation();
 placeFormValidation.enableValidation();
 
@@ -123,6 +129,20 @@ function makeCard(item) {
 
 // cardsSection.renderAll();
 
+// Создание попапа редактирования аватара
+const typePopupAvatar = new PopupWithForm(popupAvatar,
+  {
+    handleSubmit: (data) => {
+    api
+      .setUserAvatar(data)
+      .then((res) => {
+      userInfo.setUserAvatar(res);
+      typePopupAvatar.close();
+  })
+  .catch((err) => console.log(`Ошибка: ${err}`))
+  }
+});
+
 const typePopupImage = new PopupWithImage(popupImage);
 
 // Создание попапа создания карточки
@@ -145,9 +165,21 @@ function createNewPlace() {
 typePopupImage.setEventListeners();
 typePopupNewPlace.setEventListeners();
 typePopupEditProfile.setEventListeners();
+typePopupAvatar.setEventListeners();
 
 // Слушатели на кнопки
 editButton.addEventListener('click', openEditProfile);
 buttonAddPlace.addEventListener('click', createNewPlace);
+buttonEditAvatar.addEventListener('click', updateAvatar);
+
+function updateAvatar() {
+  // avatarFormValidation.disableButton();
+  // avatarFormValidation.resetError();
+  // avatarInput.value = userAvatar;
+  // validateFormEditAvatar.toggleButtonState();
+  typePopupAvatar.open();
+}
+
+
 
 

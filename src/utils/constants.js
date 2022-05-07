@@ -10,10 +10,13 @@ export const popupNewPlace = document.querySelector('.popup__edit-input_type_pla
 export const popupNewUrl = document.querySelector('.popup__edit-input_type_url');
 
 export const buttonAddPlace = document.querySelector('.profile__add-button');
+export const buttonEditAvatar = document.querySelector('.profile__avatar-edit');
 
 export const popupEdit = '.edit-popup';
 export const popupPlace = '.place-popup';
 export const popupImage = '.popup-image';
+export const popupAvatar = '.popup-avatar';
+export const popupConfirm = '.popup-confirm';
 
 export const elements = '.elements';
 
@@ -37,3 +40,4 @@ export const validationSettings = {
 
 export const buttonEditForm = document.querySelector('.edit-popup__form');
 export const buttonPlaceForm = document.querySelector('.place-popup__form');
+export const buttonAvatarForm = document.querySelector('.avatar-popup__form');
