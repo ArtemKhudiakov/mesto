@@ -10,7 +10,7 @@ export const popupNewPlace = document.querySelector('.popup__edit-input_type_pla
 export const popupNewUrl = document.querySelector('.popup__edit-input_type_url');
 
 export const buttonAddPlace = document.querySelector('.profile__add-button');
-export const buttonEditAvatar = document.querySelector('.profile__avatar-edit');
+export const buttonEditAvatar = document.querySelector('.profile__container');
 
 export const popupEdit = '.edit-popup';
 export const popupPlace = '.place-popup';
