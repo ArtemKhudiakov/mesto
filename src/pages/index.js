@@ -63,9 +63,24 @@ Promise.all([userServerInfo, initialServerCards])
       userInfo.setUserAvatar(userData);
       userId = userData._id;
       console.log(userId);
-      cardsSection.renderAll(initialCards);
+      console.log(initialCards);
+      console.log(cardsSection);
+
+      initialCards.forEach((item => {
+      cardsSection.addItem(makeCard(item));
+      }));
+
       })
-   .catch((err) => console.log(`Ошибка загрузки данных: ${err}`));
+   .catch((err) => console.log(`Ошибка загрузки: ${err}`));
+
+// Секция карточек
+const cardsSection = new Section({
+  items: [],
+  renderer: (item) => {
+    const card = makeCard(item);
+    cardsSection.addItem(card);
+  }
+}, elements);
 
 
 
@@ -74,9 +89,15 @@ Promise.all([userServerInfo, initialServerCards])
 const typePopupEditProfile = new PopupWithForm(popupEdit,
   {
     handleSubmit: (userData) => {
-    userInfo.setUserInfo(userData);
-
-    typePopupEditProfile.close();
+    // userInfo.setUserInfo(userData);
+    api.editUserInfo(userData)
+    .then((res) => {
+      userInfo.setUserInfo(res);
+      typePopupEditProfile.close();
+    })
+    .catch(err => {
+      console.log(err);
+    })
     }
   }
 );
@@ -99,14 +120,6 @@ function makeCard(item) {
   return newCard;
 };
 
-// Секция карточек
-const cardsSection = new Section({
-  // items: initialCards,
-  renderer: (item) => {
-    const card = makeCard(item);
-    cardsSection.addItem(card);
-  }
-}, elements);
 
 // cardsSection.renderAll();
 

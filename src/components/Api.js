@@ -26,7 +26,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: userInfo.name, // из редактирования профиля взять новые фи
-        about: userInfo.about
+        about: userInfo.info
       })
     })
     .then(this._checkOk)
