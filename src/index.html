@@ -138,6 +138,45 @@
         <h2 class="popup__title popup-image__title"></h2>
       </div>
     </div>
+    <!-- Попап подтверждение удаления -->
+    <div class="popup popup-confirm">
+      <div class="popup-confirm__container">
+          <button type="button" class="popup__close-button"></button>
+          <h2 class="popup-confirm__title">Вы уверены?</h2>
+          <button type="submit" class="popup__save">
+            Да
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Попап обновления аватара -->
+    <div class="popup popup-avatar popup_opened">
+      <div class="popup-avatar__container">
+        <button type="button" class="popup__close-button"></button>
+        <h2 class="popup-avatar__title">Обновить аватар</h2>
+        <form
+          name="edit-popup-Form"
+          action="mailto:artemka86ber@gmail.com"
+          class="popup__form place-popup__form"
+          novalidate
+        >
+
+        <input
+        type="url"
+        name="link"
+        class="popup__edit-input popup__edit-input_type_url popup-avatar__input"
+        placeholder="Ссылка на картинку"
+        required
+      />
+            <span class="popup__edit-input-error"></span>
+
+          <button type="submit" class="popup__save">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+
+
 
     <template id="card-template">
       <article class="element">
