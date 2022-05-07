@@ -6,6 +6,7 @@ import { Card } from "../components/Card.js"
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Api } from '../components/Api.js';
 
@@ -17,8 +18,8 @@ import { validationSettings,
   popupPlace,
   popupImage,
   popupAvatar,
-  buttonEditAvatar,
   popupConfirm,
+  buttonEditAvatar,
   buttonAddPlace,
   editButton,
   popupEditName,
@@ -166,6 +167,7 @@ typePopupImage.setEventListeners();
 typePopupNewPlace.setEventListeners();
 typePopupEditProfile.setEventListeners();
 typePopupAvatar.setEventListeners();
+// typePopupConfirm.setEventListeners();
 
 // Слушатели на кнопки
 editButton.addEventListener('click', openEditProfile);
@@ -181,5 +183,15 @@ function updateAvatar() {
 }
 
 
-
-
+const typePopupConfirm = new PopupWithConfirm(popupConfirm,
+  {
+    handleSubmit: (data) => {
+    api
+      .setUserAvatar(data)
+      .then((res) => {
+      userInfo.setUserAvatar(res);
+      typePopupAvatar.close();
+  })
+  .catch((err) => console.log(`Ошибка: ${err}`))
+  }
+});
