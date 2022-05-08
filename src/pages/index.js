@@ -33,9 +33,9 @@ let userId = null
 // Валидация
 const profileFormValidation = new FormValidator(validationSettings, buttonEditForm)
 const placeFormValidation = new FormValidator(validationSettings, buttonPlaceForm)
-// const avatarFormValidation = new FormValidator(validationSettings, buttonAvatarForm)
+const avatarFormValidation = new FormValidator(validationSettings, buttonAvatarForm)
 
-// avatarFormValidation.enableValidation();
+avatarFormValidation.enableValidation();
 profileFormValidation.enableValidation();
 placeFormValidation.enableValidation();
 
@@ -50,7 +50,7 @@ const userInfo = new UserInfo ({
 // API
 //
 
-const api = new Api({
+export const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-40',
   headers: {
     authorization: '6a3dc8fc-cbc8-4cee-b5dd-4c0b0fbbc466',
@@ -100,6 +100,7 @@ const typePopupEditProfile = new PopupWithForm(popupEdit,
     .then((res) => {
       userInfo.setUserInfo(res);
       typePopupEditProfile.close();
+      profileFormValidation.buttonText(true);
     })
     .catch(err => {
       console.log(err);
@@ -115,7 +116,9 @@ function openEditProfile() {
   popupEditDescription.value = userData.info;
   profileFormValidation.disableButton();
   profileFormValidation.resetError();
+  profileFormValidation.buttonText(false);
   typePopupEditProfile.open();
+
 }
 
 // Функция создания новой карточки
@@ -156,6 +159,7 @@ const typePopupNewPlace = new PopupWithForm(popupPlace,
     const card = makeCard(data);
     cardsSection.addItem(card);
     typePopupNewPlace.close();
+    placeFormValidation.buttonText(true);
     })
     .catch((error => {
       console.log(error);
@@ -169,6 +173,7 @@ const typePopupNewPlace = new PopupWithForm(popupPlace,
 function createNewPlace() {
   placeFormValidation.disableButton();
   placeFormValidation.resetError();
+  placeFormValidation.buttonText(false);
   typePopupNewPlace.open();
 }
 
@@ -184,8 +189,8 @@ buttonAddPlace.addEventListener('click', createNewPlace);
 buttonEditAvatar.addEventListener('click', updateAvatar);
 
 function updateAvatar() {
-  // avatarFormValidation.disableButton();
-  // avatarFormValidation.resetError();
+  avatarFormValidation.disableButton();
+  avatarFormValidation.resetError();
   // avatarInput.value = userAvatar;
   // validateFormEditAvatar.toggleButtonState();
   typePopupAvatar.open();

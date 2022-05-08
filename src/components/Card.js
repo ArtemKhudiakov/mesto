@@ -1,3 +1,5 @@
+import { api } from '../pages/index';
+
 export class Card {
   constructor(data, cardTemplateSelector, handleCardClick, userId) {
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
@@ -21,6 +23,7 @@ export class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     cardTitle.textContent = this._name;
+    this.setCount(this._likes);
 
     this._setEventListeners();
 
@@ -30,6 +33,10 @@ export class Card {
   // Сделать лайк
   _handleLikeClick = () => {
     this._elementLike.classList.toggle('element__like_active');
+    // api.likeCard(this._id)
+    //     // .then(data => data.json)
+    //     .then(data => console.log(data.json))
+
   }
   // Удалить карточку
   _handleDeleteCard = () => {
@@ -53,7 +60,7 @@ export class Card {
   }
 
   setCount(data) {
-    this._likeCount.textContent = data.likes.length;
+    this._likeCount.textContent = data.length;
   }
 
 }
