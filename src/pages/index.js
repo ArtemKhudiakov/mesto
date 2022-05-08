@@ -91,7 +91,6 @@ const cardsSection = new Section({
 
 
 
-
 // Создание попапа редактирования профиля
 const typePopupEditProfile = new PopupWithForm(popupEdit,
   {
@@ -122,7 +121,7 @@ function openEditProfile() {
 // Функция создания новой карточки
 function makeCard(item) {
   const card = new Card(item, templateSelector,
-    () => {typePopupImage.open(item)});
+    () => {typePopupImage.open(item)}, userId);
   const newCard = card.createCard()
   return newCard;
 };
@@ -150,11 +149,21 @@ const typePopupImage = new PopupWithImage(popupImage);
 const typePopupNewPlace = new PopupWithForm(popupPlace,
   {
     handleSubmit: (data) => {
+      api
+        .addNewCard(data)
+        .then((data) => {
+
     const card = makeCard(data);
     cardsSection.addItem(card);
     typePopupNewPlace.close();
+    })
+    .catch((error => {
+      console.log(error);
+    }))
   }
-});
+  }
+);
+
 
 // Функция открытия создания новой карточки
 function createNewPlace() {
