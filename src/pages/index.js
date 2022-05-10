@@ -89,8 +89,6 @@ const cardsSection = new Section({
   }
 }, elements);
 
-
-
 // Создание попапа редактирования профиля
 const typePopupEditProfile = new PopupWithForm(popupEdit,
   {
@@ -118,19 +116,15 @@ function openEditProfile() {
   profileFormValidation.resetError();
   profileFormValidation.buttonText(false);
   typePopupEditProfile.open();
-
 }
 
 // Функция создания новой карточки
 function makeCard(item) {
   const card = new Card(item, templateSelector,
-    () => {typePopupImage.open(item)}, userId);
+    () => {typePopupImage.open(item)}, handleDeleteCard, userId);
   const newCard = card.createCard()
   return newCard;
 };
-
-
-// cardsSection.renderAll();
 
 // Создание попапа редактирования аватара
 const typePopupAvatar = new PopupWithForm(popupAvatar,
@@ -177,35 +171,58 @@ function createNewPlace() {
   typePopupNewPlace.open();
 }
 
-typePopupImage.setEventListeners();
-typePopupNewPlace.setEventListeners();
-typePopupEditProfile.setEventListeners();
-typePopupAvatar.setEventListeners();
-// typePopupConfirm.setEventListeners();
-
-// Слушатели на кнопки
-editButton.addEventListener('click', openEditProfile);
-buttonAddPlace.addEventListener('click', createNewPlace);
-buttonEditAvatar.addEventListener('click', updateAvatar);
 
 function updateAvatar() {
   avatarFormValidation.disableButton();
   avatarFormValidation.resetError();
-  // avatarInput.value = userAvatar;
-  // validateFormEditAvatar.toggleButtonState();
   typePopupAvatar.open();
 }
 
 
 const typePopupConfirm = new PopupWithConfirm(popupConfirm,
   {
-    handleSubmit: (data) => {
+    handleClick: (data) => {
     api
-      .setUserAvatar(data)
-      .then((res) => {
-      userInfo.setUserAvatar(res);
-      typePopupAvatar.close();
+      .deleteCard(data)
+      .then(() => {
+
+      card.deleteCard();
+      typePopupConfirm.close();
   })
   .catch((err) => console.log(`Ошибка: ${err}`))
   }
 });
+
+function handleDeleteCard(card) {
+  console.log(card);
+  typePopupConfirm.open();
+  typePopupConfirm.changeHandleSubmit(() => {
+    handleSubmitDeleteForm(card);
+    console.log('карточка');
+    console.log(card);
+  })
+}
+
+function handleSubmitDeleteForm(card) {
+  console.log(card)
+  console.log(card._id)
+  api.deleteCard(card._id)
+  .then(() => {
+    card.deleteCard();
+    typePopupConfirm.close();
+  })
+  .catch((err) => console.log(err));
+}
+
+
+
+typePopupImage.setEventListeners();
+typePopupNewPlace.setEventListeners();
+typePopupEditProfile.setEventListeners();
+typePopupAvatar.setEventListeners();
+typePopupConfirm.setEventListeners();
+
+// Слушатели на кнопки
+editButton.addEventListener('click', openEditProfile);
+buttonAddPlace.addEventListener('click', createNewPlace);
+buttonEditAvatar.addEventListener('click', updateAvatar);

@@ -1,16 +1,17 @@
 import { api } from '../pages/index';
 
 export class Card {
-  constructor(data, cardTemplateSelector, handleCardClick, userId) {
+  constructor(data, cardTemplateSelector, handleCardClick, handleDeleteCard, userId) {
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
     this._cardElement = this._cardTemplate.querySelector('.element').cloneNode(true);
     this._name = data.name;
     this._link = data.link;
-    this._id = data._id;
     this._likes = data.likes;
-    this._owner = data.owner;
+    this._ownerCardID = data.owner._id;
+    this._id= data._id;
     this._userId = userId;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteCard = handleDeleteCard;
     this._trashButton = this._cardElement.querySelector('.element__trash')
     this._likeCount = this._cardElement.querySelector('.element__likes-count')
   }
@@ -24,7 +25,7 @@ export class Card {
     this._cardImage.alt = this._name;
     cardTitle.textContent = this._name;
     this.setCount(this._likes);
-
+    this._unshowDeleteButton()
     this._setEventListeners();
 
     return this._cardElement;
@@ -39,7 +40,8 @@ export class Card {
 
   }
   // Удалить карточку
-  _handleDeleteCard = () => {
+  deleteCard = () => {
+
     this._cardElement.remove();
     this._cardElement = null;
   };
@@ -47,7 +49,9 @@ export class Card {
   //Повесить слушателей
   _setEventListeners() {
     this._elementLike.addEventListener('click', this._handleLikeClick);
-    this._trashButton.addEventListener('click', this._handleDeleteCard);
+    this._trashButton.addEventListener('click', () => {this._handleDeleteCard(this);
+
+  });
     this._cardImage.addEventListener('click', () => {this._handleCardClick(this._name, this._link)});
   }
 
@@ -62,6 +66,14 @@ export class Card {
   setCount(data) {
     this._likeCount.textContent = data.length;
   }
+
+  _unshowDeleteButton() {
+    if (this._userId !== this._ownerCardID) {
+      this._trashButton.remove();
+    }
+  }
+
+
 
 }
 
