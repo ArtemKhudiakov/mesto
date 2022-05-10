@@ -1,7 +1,5 @@
-import { api } from '../pages/index';
-
 export class Card {
-  constructor(data, cardTemplateSelector, handleCardClick, handleDeleteCard, userId) {
+  constructor(data, cardTemplateSelector, handleCardClick, handleDeleteCard, handleLikesOnServer, userId) {
     this._cardTemplate = document.querySelector(cardTemplateSelector).content;
     this._cardElement = this._cardTemplate.querySelector('.element').cloneNode(true);
     this._name = data.name;
@@ -12,10 +10,12 @@ export class Card {
     this._userId = userId;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
+    this._handleLikesOnServer = handleLikesOnServer;
+    this._data = data;
     this._trashButton = this._cardElement.querySelector('.element__trash')
     this._likeCount = this._cardElement.querySelector('.element__likes-count')
   }
-  // Сделать карточку
+  // Card creation
   createCard () {
     this._cardImage = this._cardElement.querySelector('.element__image');
     const cardTitle = this._cardElement.querySelector('.element__title');
@@ -24,53 +24,58 @@ export class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     cardTitle.textContent = this._name;
-    this.setCount(this._likes);
-    this._unshowDeleteButton()
+
     this._setEventListeners();
+    this.setCount(this._likes);
+    this._checkMyLike();
+    this._unshowDeleteButton()
 
     return this._cardElement;
   }
 
-  // Сделать лайк
-  _handleLikeClick = () => {
+  //Change like/deslike
+  handleLikeClick = () => {
     this._elementLike.classList.toggle('element__like_active');
-    // api.likeCard(this._id)
-    //     // .then(data => data.json)
-    //     .then(data => console.log(data.json))
-
   }
-  // Удалить карточку
+  //Card deletion
   deleteCard = () => {
-
     this._cardElement.remove();
     this._cardElement = null;
   };
 
-  //Повесить слушателей
+  //Elements listeners
   _setEventListeners() {
-    this._elementLike.addEventListener('click', this._handleLikeClick);
-    this._trashButton.addEventListener('click', () => {this._handleDeleteCard(this);
-
-  });
+    this._elementLike.addEventListener('click', () => {this._handleLikesOnServer(this)});
+    this._trashButton.addEventListener('click', () => {this._handleDeleteCard(this)});
     this._cardImage.addEventListener('click', () => {this._handleCardClick(this._name, this._link)});
   }
-
-  _checkOwnLike() {
-    this.data.likes.forEach((likeOwner) => {
-      if (likeOwner._id !== this._userId) {
-        this.addLikeClass();
-      }
-    })
-  }
-
-  setCount(data) {
-    this._likeCount.textContent = data.length;
-  }
-
+  //Delete trash button on my cards
   _unshowDeleteButton() {
     if (this._userId !== this._ownerCardID) {
       this._trashButton.remove();
     }
+  }
+
+  //Likes server
+  setCount(data) {
+    this._likes = data
+    this._likeCount.textContent = this._likes.length;
+  }
+
+  isLiked() {
+    const status = this._likes.map((userData) => userData._id).includes(this._userId);
+    return status
+  }
+
+  _checkMyLike() {
+    this.isLiked() ? this.addLikeClass() : this.removeLikeClass();
+  }
+
+  addLikeClass() {
+    this._elementLike.classList.add('element__like_active');
+  }
+  removeLikeClass() {
+    this._elementLike.classList.remove('element__like_active');
   }
 
 

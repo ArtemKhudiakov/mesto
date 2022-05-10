@@ -121,7 +121,7 @@ function openEditProfile() {
 // Функция создания новой карточки
 function makeCard(item) {
   const card = new Card(item, templateSelector,
-    () => {typePopupImage.open(item)}, handleDeleteCard, userId);
+    () => {typePopupImage.open(item)}, handleDeleteCard, handleLikesOnServer, userId);
   const newCard = card.createCard()
   return newCard;
 };
@@ -178,7 +178,7 @@ function updateAvatar() {
   typePopupAvatar.open();
 }
 
-
+// Aprove deleting card
 const typePopupConfirm = new PopupWithConfirm(popupConfirm,
   {
     handleClick: (data) => {
@@ -193,6 +193,7 @@ const typePopupConfirm = new PopupWithConfirm(popupConfirm,
   }
 });
 
+// Opening deleting popup
 function handleDeleteCard(card) {
   console.log(card);
   typePopupConfirm.open();
@@ -202,7 +203,7 @@ function handleDeleteCard(card) {
     console.log(card);
   })
 }
-
+// Deleting card via api
 function handleSubmitDeleteForm(card) {
   console.log(card)
   console.log(card._id)
@@ -211,18 +212,41 @@ function handleSubmitDeleteForm(card) {
     card.deleteCard();
     typePopupConfirm.close();
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(`Ошибка: ${err}`))
+}
+
+function handleLikesOnServer(card) {
+
+  console.log(card);
+  if (card.isLiked()) {
+      api.dislikeCard(card._id)
+        .then((data) => {
+          card.removeLikeClass();
+          card.setCount(data.likes);
+        })
+        .catch((err) => console.log(`Ошибка: ${err}`))
+  } else {
+      api.likeCard(card._id)
+        .then((data) => {
+          card.addLikeClass();
+          card.setCount(data.likes);
+        })
+        .catch((err) => console.log(`Ошибка: ${err}`))
+    }
 }
 
 
 
+
+
+// Listeners
 typePopupImage.setEventListeners();
 typePopupNewPlace.setEventListeners();
 typePopupEditProfile.setEventListeners();
 typePopupAvatar.setEventListeners();
 typePopupConfirm.setEventListeners();
 
-// Слушатели на кнопки
+// Button listeners
 editButton.addEventListener('click', openEditProfile);
 buttonAddPlace.addEventListener('click', createNewPlace);
 buttonEditAvatar.addEventListener('click', updateAvatar);
