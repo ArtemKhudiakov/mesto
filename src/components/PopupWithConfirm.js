@@ -20,3 +20,4 @@ export class PopupWithConfirm extends Popup {
     this._handleSubmit = newSubmit;
   }
 }
+
