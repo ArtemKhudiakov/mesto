@@ -117,13 +117,16 @@ function makeCard(item) {
 // Popup new avatar
 const typePopupAvatar = new PopupWithForm(popupAvatar, {
   handleSubmit: (data) => {
-    api
-      .setUserAvatar(data)
+    typePopupAvatar.buttonText(true);
+    api.setUserAvatar(data)
       .then((res) => {
         userInfo.setUserAvatar(res);
         typePopupAvatar.close();
       })
       .catch((err) => console.log(`Ошибка: ${err}`))
+      .finally(() => {
+        typePopupAvatar.buttonText(false)
+      })
   }
 });
 
