@@ -15,7 +15,7 @@ export const buttonEditAvatar = document.querySelector('.profile__container');
 export const popupEdit = '.edit-popup';
 export const popupPlace = '.place-popup';
 export const popupImage = '.popup-image';
-export const popupAvatar = '.popup-avatar';
+export const popupAvatar = '.avatar-popup';
 export const popupConfirm = '.popup-confirm';
 
 export const elements = '.elements';
