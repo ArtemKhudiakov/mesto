@@ -33,10 +33,6 @@ export class Card {
     return this._cardElement;
   }
 
-  // Change like/deslike
-  handleLikeClick = () => {
-    this._elementLike.classList.toggle('element__like_active');
-  }
   // Card deletion
   deleteCard = () => {
     this._cardElement.remove();

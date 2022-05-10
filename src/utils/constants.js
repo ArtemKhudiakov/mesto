@@ -40,4 +40,4 @@ export const validationSettings = {
 
 export const buttonEditForm = document.querySelector('.edit-popup__form');
 export const buttonPlaceForm = document.querySelector('.place-popup__form');
-export const buttonAvatarForm = document.querySelector('.avatar-popup__form');
+export const buttonAvatarForm = document.querySelector('.popup-avatar__form');

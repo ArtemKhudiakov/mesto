@@ -1,30 +1,13 @@
 import "./index.css"
 
-// import { initialCards } from "../utils/cards.js"
-import {
-  FormValidator
-} from "../components/FormValidator.js";
-import {
-  Card
-} from "../components/Card.js"
-import {
-  Section
-} from '../components/Section.js';
-import {
-  PopupWithForm
-} from '../components/PopupWithForm.js';
-import {
-  PopupWithImage
-} from '../components/PopupWithImage.js';
-import {
-  PopupWithConfirm
-} from '../components/PopupWithConfirm.js';
-import {
-  UserInfo
-} from '../components/UserInfo.js';
-import {
-  Api
-} from '../components/Api.js';
+import { FormValidator } from "../components/FormValidator.js";
+import { Card } from "../components/Card.js"
+import { Section } from '../components/Section.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { Api } from '../components/Api.js';
 
 import {
   validationSettings,
@@ -63,7 +46,6 @@ const userInfo = new UserInfo({
   avatarSelector: '.profile__avatar',
 });
 
-
 // API
 //
 
@@ -84,10 +66,7 @@ Promise.all([userServerInfo, initialServerCards])
     userInfo.setUserInfo(userData);
     userInfo.setUserAvatar(userData);
     userId = userData._id;
-    initialCards.forEach((item => {
-      cardsSection.addItem(makeCard(item));
-    }));
-
+    cardsSection.renderAll(initialCards)
   })
   .catch((err) => console.log(`Ошибка: ${err}`));
 
@@ -103,13 +82,17 @@ const cardsSection = new Section({
 // Popup edit profile
 const typePopupEditProfile = new PopupWithForm(popupEdit, {
   handleSubmit: (userData) => {
+    typePopupEditProfile.buttonText(true);
     api.editUserInfo(userData)
       .then((res) => {
         userInfo.setUserInfo(res);
         typePopupEditProfile.close();
-        profileFormValidation.buttonText(true);
+
       })
       .catch((err) => console.log(`Ошибка: ${err}`))
+      .finally(() => {
+        typePopupEditProfile.buttonText(false)
+      })
   }
 });
 
@@ -120,7 +103,6 @@ function openEditProfile() {
   popupEditDescription.value = userData.info;
   profileFormValidation.disableButton();
   profileFormValidation.resetError();
-  profileFormValidation.buttonText(false);
   typePopupEditProfile.open();
 }
 
@@ -150,14 +132,18 @@ const typePopupImage = new PopupWithImage(popupImage);
 // Popup new place
 const typePopupNewPlace = new PopupWithForm(popupPlace, {
   handleSubmit: (data) => {
+    typePopupNewPlace.buttonText(true);
     api.addNewCard(data)
       .then((data) => {
         const card = makeCard(data);
         cardsSection.addItem(card);
         typePopupNewPlace.close();
-        placeFormValidation.buttonText(true);
+
       })
       .catch((err) => console.log(`Ошибка: ${err}`))
+      .finally(() => {
+        typePopupNewPlace.buttonText(false)
+      })
   }
 });
 
@@ -165,7 +151,6 @@ const typePopupNewPlace = new PopupWithForm(popupPlace, {
 function createNewPlace() {
   placeFormValidation.disableButton();
   placeFormValidation.resetError();
-  placeFormValidation.buttonText(false);
   typePopupNewPlace.open();
 }
 
@@ -182,8 +167,6 @@ const typePopupConfirm = new PopupWithConfirm(popupConfirm, {
     api
       .deleteCard(data)
       .then(() => {
-
-        card.deleteCard();
         typePopupConfirm.close();
       })
       .catch((err) => console.log(`Ошибка: ${err}`))

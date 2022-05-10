@@ -19,7 +19,6 @@ export class FormValidator {
   _setEventListeners() {
     this._inputList = Array.from(this._form.querySelectorAll(this._validitySettings.inputSelector));
     this._buttonElement = this._form.querySelector(this._validitySettings.buttonSelector);
-    this._defaultButtonText = this._buttonElement.textContent;
     this._toggleButtonState(this._inputList, this._buttonElement);
 
     this._inputList.forEach(inputElement => {
@@ -87,11 +86,4 @@ export class FormValidator {
     });
 };
 
-  buttonText(save) {
-    if (save) {
-      this._buttonElement.textContent = 'Сохранение...'
-    } else {
-      this._buttonElement.textContent = this._defaultButtonText;
-    }
-  }
 }
