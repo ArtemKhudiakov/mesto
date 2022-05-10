@@ -77,25 +77,19 @@ export const api = new Api({
 
 
 const userServerInfo = api.getUserInfoServer();
-console.log(userServerInfo);
 const initialServerCards = api.getInitialCards();
-console.log(initialServerCards);
 
 Promise.all([userServerInfo, initialServerCards])
   .then(([userData, initialCards]) => {
     userInfo.setUserInfo(userData);
     userInfo.setUserAvatar(userData);
     userId = userData._id;
-    console.log(userId);
-    console.log(initialCards);
-    console.log(cardsSection);
-
     initialCards.forEach((item => {
       cardsSection.addItem(makeCard(item));
     }));
 
   })
-  .catch((err) => console.log(`Ошибка загрузки: ${err}`));
+  .catch((err) => console.log(`Ошибка: ${err}`));
 
 // Cards section
 const cardsSection = new Section({
@@ -109,16 +103,13 @@ const cardsSection = new Section({
 // Popup edit profile
 const typePopupEditProfile = new PopupWithForm(popupEdit, {
   handleSubmit: (userData) => {
-    // userInfo.setUserInfo(userData);
     api.editUserInfo(userData)
       .then((res) => {
         userInfo.setUserInfo(res);
         typePopupEditProfile.close();
         profileFormValidation.buttonText(true);
       })
-      .catch(err => {
-        console.log(err);
-      })
+      .catch((err) => console.log(`Ошибка: ${err}`))
   }
 });
 
@@ -161,15 +152,12 @@ const typePopupNewPlace = new PopupWithForm(popupPlace, {
   handleSubmit: (data) => {
     api.addNewCard(data)
       .then((data) => {
-
         const card = makeCard(data);
         cardsSection.addItem(card);
         typePopupNewPlace.close();
         placeFormValidation.buttonText(true);
       })
-      .catch((error => {
-        console.log(error);
-      }))
+      .catch((err) => console.log(`Ошибка: ${err}`))
   }
 });
 

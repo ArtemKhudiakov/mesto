@@ -33,30 +33,30 @@ export class Card {
     return this._cardElement;
   }
 
-  //Change like/deslike
+  // Change like/deslike
   handleLikeClick = () => {
     this._elementLike.classList.toggle('element__like_active');
   }
-  //Card deletion
+  // Card deletion
   deleteCard = () => {
     this._cardElement.remove();
     this._cardElement = null;
   };
 
-  //Elements listeners
+  // Elements listeners
   _setEventListeners() {
     this._elementLike.addEventListener('click', () => {this._handleLikesOnServer(this)});
     this._trashButton.addEventListener('click', () => {this._handleDeleteCard(this)});
     this._cardImage.addEventListener('click', () => {this._handleCardClick(this._name, this._link)});
   }
-  //Delete trash button on my cards
+  // Delete trash button on my cards
   _unshowDeleteButton() {
     if (this._userId !== this._ownerCardID) {
       this._trashButton.remove();
     }
   }
 
-  //Likes server
+  // Likes server
   setCount(data) {
     this._likes = data
     this._likeCount.textContent = this._likes.length;
@@ -78,8 +78,5 @@ export class Card {
   removeLikeClass() {
     this._elementLike.classList.remove('element__like_active');
   }
-
-
-
 }
 
