@@ -61,16 +61,17 @@ export class Card {
     this._likes = data
     this._likeCount.textContent = this._likes.length;
   }
-
+  // Like status
   isLiked() {
     const status = this._likes.map((userData) => userData._id).includes(this._userId);
     return status
   }
-
+  // Checking card for my likes
   _checkMyLike() {
     this.isLiked() ? this.addLikeClass() : this.removeLikeClass();
   }
 
+  // Toggle like button
   addLikeClass() {
     this._elementLike.classList.add('element__like_active');
   }
